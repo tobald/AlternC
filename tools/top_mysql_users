@@ -75,7 +75,7 @@ done
 
 
 #-------------------------
-set_messages()
+function set_messages
 #-------------------------
 {
 	# Language-dependent messages
@@ -95,7 +95,7 @@ set_messages()
 
 
 #-------------------------
-trap_EXIT()
+function trap_EXIT
 #-------------------------
 {
 	# Does some cleaning
