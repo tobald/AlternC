@@ -28,6 +28,8 @@ require_once("../class/config.php");
 
 include_once("head.php");
 
+echo "<h3>Bienvenue sur votre bureau</h3>";
+
 // Show last login information :
 echo "<p>";
 __("Last Login: ");
