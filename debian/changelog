@@ -1,3 +1,9 @@
+alternc (3.3.11+nmu2) stable; urgency=low
+
+  * Fix opendkim service configuration when running alternc.install
+
+ -- Kienan Stewart <kienan@koumbit.org>  Thu, 14 Jun 2018 15:01:00 -0400
+
 alternc (3.3.11+nmu1) stable; urgency=low
 
   * Fix #254: Adding default domains for new members works again
