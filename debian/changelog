@@ -1,3 +1,27 @@
+alternc (3.3.11+nmu1) stable; urgency=low
+
+  * Fix #254: Adding default domains for new members works again
+  * Fix #247: Escape passwords at install time
+  * Fix #245: Remove warnings when saving permission changes in filebrowser
+  * Fix #243: Remove warning about undefined variable that's frequently printed to screen
+  * Fix #233: Opendkim configuration in stretch
+  * Fix #222: Fix mysql errors when installing alternc-ssl
+  * Fix #221: Activate/deactive sub-domains works again
+  * Fix broken symlinks for fr_CA and en_GB locales
+  * Apply wheezy andjessie patches
+  * Fix templates to work with Apache 2.4
+  * Fix spoolsize to handle deleted databases
+  * Use PDO in utility scripts instead of the mysql_query
+  * Fix lastlogin default value for mariadb
+  * Fix a bug in db_del
+  * Correct template directory validattion before deleting vhosts
+  * Fix typo prevent robuecube-ssl domain types from being created
+  * Make error messages during protected directory creation more helpful
+  * Fix #210: Do not block execution for deprecation warnings
+  * Fix #207: Infinite loop when updating domains
+
+ -- Kienan Stewart <kienan@koumbit.org>  Thu, 14 Jun 2018 14:39:00 -0400
+
 alternc (3.3.10) stable; urgency=low
 
   * Version identical to 3.1 for Squeeze
