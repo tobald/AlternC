@@ -57,6 +57,7 @@ if ($db->query("SELECT uid, name FROM mailman;")) {
       $cc[]=array("uid" => $db->f("uid"), "name" => $db->f("name"));
     }
     foreach ($cc as $c){
+      if (!is_dir("/var/lib/mailman/lists/".$c["name"])) continue;
       echo $c["uid"]."/".$c["name"]; flush();
       $size1=exec("sudo /usr/bin/du -s ".escapeshellarg("/var/lib/mailman/lists/".$c["name"]));
       $size2=exec("sudo /usr/bin/du -s ".escapeshellarg("/var/lib/mailman/archives/private/".$c["name"]));
