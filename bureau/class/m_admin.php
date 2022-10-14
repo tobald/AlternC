@@ -626,11 +626,12 @@ class m_admin {
             $msg->raise("ERROR", "admin", _("Login can only contains characters a-z, 0-9 and -"));
             return false;
         }
-        if (strlen($login) > 14) {
+        if (strlen($login) > 20) {
             // Not an arbitrary value : MySQL user names can be up to 16 characters long
             // If we want to allow people to create a few mysql_user (and we want to!)
             // we have to limit the login lenght
-            $msg->raise("ERROR", "admin", _("The login is too long (14 chars max)"));
+            // For old Mysql. MariaDb doesn't have that problem.
+            $msg->raise("ERROR", "admin", _("The login is too long (20 chars max)"));
             return false;
         }
         // Some login are not allowed...
