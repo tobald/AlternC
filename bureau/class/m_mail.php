@@ -483,6 +483,7 @@ ORDER BY
         $this->del_dns_dmarc($domain);
         $this->del_dns_spf($domain);
         $this->del_dns_autoconf($domain);
+        $this->dkim_del($domain);
 
         $db->query("UPDATE domaines SET dns_action='UPDATE' WHERE id= ? ;", array($dom_id));
         return true;
