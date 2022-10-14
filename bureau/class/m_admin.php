@@ -371,7 +371,7 @@ class m_admin {
 
                 $request = 'SELECT uid FROM membres WHERE 1';
 
-                if ($pattern && preg_match('/[a-zA-Z0-9]+/', $pattern)) {
+                if ($pattern && preg_match('/[a-zA-Z0-9\-]+/', $pattern)) {
                     $request .= sprintf(' AND login LIKE "%%%s%%"', $pattern);
                 }
                 if ($creator) {
@@ -622,8 +622,8 @@ class m_admin {
             }
         }
         $login = strtolower($login);
-        if (!preg_match("#^[a-z0-9]+$#", $login)) { //$
-            $msg->raise("ERROR", "admin", _("Login can only contains characters a-z and 0-9"));
+        if (!preg_match("#^[a-z0-9\-]+$#", $login)) { //$
+            $msg->raise("ERROR", "admin", _("Login can only contains characters a-z, 0-9 and -"));
             return false;
         }
         if (strlen($login) > 14) {

@@ -241,8 +241,8 @@ class m_mysql {
                 return false;
             }
         }
-        if (!preg_match("#^[0-9a-z]*$#", $dbn)) {
-            $msg->raise("ERROR", "mysql", _("Database name can contain only letters and numbers"));
+        if (!preg_match("#^[0-9a-z\-]*$#", $dbn)) {
+            $msg->raise("ERROR", "mysql", _("Database name can contain only letters, numbers and -"));
             return false;
         }
 
@@ -368,8 +368,8 @@ class m_mysql {
             $dbname = $dbn;
             $dbn = $dbncomp[1];
         }
-        if (!preg_match("#^[0-9a-z]*$#", $dbn)) {
-            $msg->raise("ERROR", "mysql", _("Database name can contain only letters and numbers"));
+        if (!preg_match("#^[0-9a-z\-]*$#", $dbn)) {
+            $msg->raise("ERROR", "mysql", _("Database name can contain only letters, numbers and -"));
             return false;
         }
         $db->query("SELECT * FROM db WHERE uid= ? AND db= ? ;", array($cuid, $dbname));
@@ -454,8 +454,8 @@ class m_mysql {
         global $msg, $db;
         $msg->log("mysql", "grant", $base . "-" . $rights . "-" . $user);
 
-        if (!preg_match("#^[0-9a-z_\\*\\\\]*$#", $base)) {
-            $msg->raise("ERROR", "mysql", _("Database name can contain only letters and numbers"));
+        if (!preg_match("#^[0-9a-z\-_\\*\\\\]*$#", $base)) {
+            $msg->raise("ERROR", "mysql", _("Database name can contain only letters, numbers and -"));
             return false;
         } elseif (!$this->dbus->query("select db from db where db= ?;", array($base))) {
             $msg->raise("ERROR", "mysql", _("Database not found"));
@@ -469,8 +469,8 @@ class m_mysql {
             return false;
         }
 
-        if (!preg_match("#^[0-9a-z]#", $user)) {
-            $msg->raise("ERROR", "mysql", _("The username can contain only letters and numbers."));
+        if (!preg_match("#^[0-9a-z\-]#", $user)) {
+            $msg->raise("ERROR", "mysql", _("The username can contain only letters, numbers and -."));
             return false;
         }
         $db->query("select name from dbusers where name= ? ;", array($user));
@@ -684,8 +684,8 @@ class m_mysql {
             $msg->raise("ALERT", "mysql", _("The password is mandatory"));
             return false;
         }
-        if (!preg_match("#^[0-9a-z]#", $usern)) {
-            $msg->raise("ERROR", "mysql", _("The username can contain only letters and numbers"));
+        if (!preg_match("#^[0-9a-z\-]#", $usern)) {
+            $msg->raise("ERROR", "mysql", _("The username can contain only letters, numbers and -"));
             return false;
         }
 
@@ -758,8 +758,8 @@ class m_mysql {
     function del_user($user, $all = false, $caller_is_deldb = false) {
         global $db, $msg, $cuid;
         $msg->log("mysql", "del_user", $user);
-        if (!preg_match("#^[0-9a-z]#", $user)) {
-            $msg->raise("ERROR", "mysql", _("The username can contain only letters and numbers"));
+        if (!preg_match("#^[0-9a-z\-]#", $user)) {
+            $msg->raise("ERROR", "mysql", _("The username can contain only letters, numbers and -"));
             return false;
         }
         if (!$all) {

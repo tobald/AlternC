@@ -8,7 +8,7 @@ fi
 
 name="$1"
 
-if [[ ! "$name" =~ ^([a-z0-9]+)$ ]] ; then
+if [[ ! "$name" =~ ^([a-z0-9\-]+)$ ]] ; then
   echo "Account name is incorrect."
   exit 2
 fi
