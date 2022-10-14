@@ -1187,7 +1187,7 @@ class m_admin {
             if ($c["gesdns"] == 1) {
                 // Check the NS pointing to us
                 $out = array();
-                exec("dig +short NS " . escapeshellarg($c["domaine"]), $out);
+                exec("dig +short NS +noidnout " . escapeshellarg($c["domaine"]), $out);
                 if (count($out) == 0) {
                     $dontexist = true;
                 } else {
@@ -1202,7 +1202,7 @@ class m_admin {
             if (!$dontexist&&(!$lazycheck||!$c["gesdns"])) {
                 if ($c["gesmx"] == 1) {
                     $out = array();
-                    exec("dig +short MX " . escapeshellarg($c["domaine"]), $out);
+                    exec("dig +short MX +noidnout " . escapeshellarg($c["domaine"]), $out);
                     $out2 = array();
                     foreach ($out as $o) {
                         list($t, $out2[]) = explode(" ", $o);
@@ -1220,7 +1220,7 @@ class m_admin {
                     if ($d["type"] == 'VHOST') {
                         // Check the IP: 
                         $out = array();
-                        exec("dig +short A " . escapeshellarg($d["sub"] . (($d["sub"] != "") ? "." : "") . $c["domaine"]), $out);
+                        exec("dig +short A +noidnout " . escapeshellarg($d["sub"] . (($d["sub"] != "") ? "." : "") . $c["domaine"]), $out);
                         if (!is_array($out)) { // exec dig can fail
                             $errno = 1;
                             $errstr.=_("Fail to get the DNS information. Try again.")."\n";
