@@ -119,9 +119,6 @@ function checkhostallow_nodns($domain) {
     if (!$found || $fmode == 0) {                      // TLD not allowed at all
         return 1;
     }
-    if (count(explode(".", substr($domain, 0, -$sizefound))) > 2) {
-        return 1;
-    }
     return 0;
 }
 
