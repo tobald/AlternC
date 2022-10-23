@@ -61,6 +61,7 @@ echo $msg->msg_html_all();
     <th><?php __("Advanced?");?></th>
     <th><?php __("Create tmp directory ?");?></th>
     <th><?php __("create www directory ?");?></th>
+    <th><?php __("Has https option ?");?></th>
 </tr>
 </thead>
 <?php 
@@ -80,6 +81,7 @@ foreach($dom->domains_type_lst() as $d) {
     <td><?php echo $d['advanced']?__("Yes"):__("No");?></td>
     <td><?php echo $d['create_tmpdir']?__("Yes"):__("No");?></td>
     <td><?php echo $d['create_targetdir']?__("Yes"):__("No");?></td>
+    <td><?php echo $d['has_https_option']?__("Yes"):__("No");?></td>
 </tr>
 <?php } // end foreach 
 ?>

@@ -42,10 +42,11 @@ $fields = array (
 	"advanced"    		=> array ("post", "string", ""),
 	"create_tmpdir"    		=> array ("post", "string", ""),
 	"create_targetdir"    		=> array ("post", "string", ""),
+	"has_https_option"          => array ("post", "string", ""),
 );
 getFields($fields);
 
-if (! $dom->domains_type_update($name, $description, $target, $entry, $compatibility, $enable, $only_dns, $need_dns, $advanced,$create_tmpdir,$create_targetdir) ) {
+if (! $dom->domains_type_update($name, $description, $target, $entry, $compatibility, $enable, $only_dns, $need_dns, $advanced,$create_tmpdir,$create_targetdir,$has_https_option) ) {
     include("adm_domstypedoedit.php");
 } else {
     $msg->raise("INFO", "admin", _("Domain type is updated"));

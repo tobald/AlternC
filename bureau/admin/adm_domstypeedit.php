@@ -44,6 +44,7 @@ $fields = array (
     "advanced"      => array ("post", "boolean", ""),
     "create_tmpdir"      => array ("post", "boolean", ""),
     "create_targetdir"      => array ("post", "boolean", ""),
+    "has_https_option"      => array ("post", "boolean", ""),
 );
 getFields($fields);
 
@@ -121,6 +122,10 @@ if (! $msg->has_msgs("ERROR")) {
 	    <tr>
             <th><?php __("Create target directory ?");?></th>
             <td><input name="create_targetdir" type="checkbox" value="1" <?php cbox($d['create_targetdir']); ?> /></td>
+      </tr>
+        <tr>
+            <th><?php __("Has https option ?");?></th>
+            <td><input name="has_https_option" type="checkbox" value="1" <?php cbox($d['has_https_option']); ?> /></td>
       </tr>
       <tr class="trbtn">
           <td colspan="2">
