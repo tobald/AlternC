@@ -2588,22 +2588,22 @@ msgstr "Salir"
 #: ../admin/bro_main.php:73
 #, php-format
 msgid "The folder '%s' was successfully created"
-msgstr ""
+msgstr "El archivo '%s' ha sido creado con éxito."
 
 #: ../admin/bro_main.php:79
 #, php-format
 msgid "The file '%s' was successfully created"
-msgstr ""
+msgstr "El archivo '%s' ha sido creado con éxito."
 
 #: ../admin/bro_main.php:94
 #, php-format
 msgid "The folder '%s' was successfully deleted"
-msgstr ""
+msgstr "El archivo '%s' ha sido eliminado con éxito."
 
 #: ../admin/bro_main.php:96
 #, php-format
 msgid "The file '%s' was successfully deleted"
-msgstr ""
+msgstr "El archivo '%s' ha sido eliminado con éxito."
 
 #: ../admin/bro_main.php:102
 #, php-format
