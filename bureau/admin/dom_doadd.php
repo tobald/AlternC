@@ -39,8 +39,10 @@ $dom->lock();
 if (!$dom->add_domain($newdomain,$dns,0,0,$newisslave,$slavedom)) {
 	include("dom_add.php");
 	exit();
-} else
+} else {
 	$msg->raise("INFO", "dom", _("Your new domain %s has been successfully installed"),$newdomain);
+	$msg->raise("ALERT", "dom", _("The certificate will be created in the next hour. The propagation of the new domain name requires a bit of time."));
+}
 
 $dom->unlock();
 
