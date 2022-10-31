@@ -1,3 +1,9 @@
+alternc (3.5.0+dp2) buster; urgency=medium
+
+  * merge changes from koumbit 
+
+ -- Christophe Siraut <d@tobald.eu.org>  Mon, 31 Oct 2022 12:19:03 +0100
+
 alternc (3.5.0+dp1) buster; urgency=medium
 
   * domainepublic release for buster
