@@ -1959,31 +1959,14 @@ class m_dom {
         // Search for things to do on SUB-DOMAINS:
         $db->query("SELECT sd.*, dt.only_dns FROM domaines_type dt, sub_domaines sd WHERE dt.name=sd.type AND sd.web_action!='OK' ORDER BY sd.id;");
         $alldoms=array();
-        $ignore=array();
-        $delete=array();
         while ($db->next_record()) {
-            // only_dns=1 => weird, we should not have web_action SET to something else than OK ... anyway, skip it
-            if ($db->Record["only_dns"]) {
-                if ($db->Record["web_action"]=="DELETE") {
-                    $delete[]=$db->Record["id"];
-                } else {
-                    $ignore[]=$db->Record["id"];
-                }
-            } else {
-                $alldoms[$db->Record["id"]]=$db->Record;
-            }
-        }
-        foreach($delete as $id) {
-            $db->query("DELETE FROM sub_domaines WHERE id=?;",array($id));
-        }
-        foreach($ignore as $id) {
-            // @FIXME (unsure it's useful) maybe we could check that no file exist for this subdomain ?
-            $db->query("UPDATE sub_domaines SET web_action='OK' WHERE id=?;",array($id));
+            $alldoms[$db->Record["id"]]=$db->Record;
         }
         // now launch hooks
         if (count($alldoms)) {
             $hooks->invoke("hook_updatedomains_web_pre");
             foreach($alldoms as $id=>$subdom) {
+                if ($subdom["only_dns"]) continue;
                 // is it a delete (DISABLED or DELETE)
                 if ($subdom["web_action"]=="DELETE" || strtoupper(substr($subdom["enable"],0,7))=="DISABLE") {
                     $ret = $hooks->invoke("hook_updatedomains_web_del",array($subdom["id"]));
@@ -1992,7 +1975,9 @@ class m_dom {
                     $ret = $hooks->invoke("hook_updatedomains_web_add",array($subdom["id"]));
                     $hooks->invoke("hook_updatedomains_web_after",array($subdom["id"]));
                 }
+            }
 
+            foreach($alldoms as $id=>$subdom) {
                 if ($subdom["web_action"]=="DELETE") {
                     $db->query("DELETE FROM sub_domaines WHERE id=?;",array($id));
                 } else {
@@ -2004,7 +1989,7 @@ class m_dom {
                         $db->query("UPDATE sub_domaines SET enable='ENABLED' WHERE id=?;",array($id));
                     }
                     // we keep the highest result returned by hooks...
-                    rsort($ret,SORT_NUMERIC); $returncode=$ret[0];
+                    if (isset($ret)) {rsort($ret,SORT_NUMERIC); $returncode=$ret[0]; } else { $returncode=0; }
                     $db->query("UPDATE sub_domaines SET web_result=?, web_action='OK' WHERE id=?;",array($returncode,$id));
                 }
             }
