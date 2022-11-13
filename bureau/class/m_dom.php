@@ -704,7 +704,7 @@ class m_dom {
             return false;
         }
         // Interdit les domaines clés (table forbidden_domains) sauf en cas FORCE
-        $db->query("SELECT domain FROM forbidden_domains WHERE domain= ? ;", array($domain));
+        $db->query("SELECT domain FROM forbidden_domains WHERE INSTR(?, domain) > 0;", array($domain));
         if ($db->num_rows() && !$force) {
             $msg->raise("ERROR", "dom", _("The requested domain is forbidden in this server, please contact the administrator"));
             return false;
