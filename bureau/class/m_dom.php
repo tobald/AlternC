@@ -688,7 +688,7 @@ class m_dom {
      * @return boolean Retourne FALSE si une erreur s'est produite, TRUE sinon.
      */
     function add_domain($domain, $dns, $noerase = false, $force = false, $isslave = false, $slavedom = "") {
-        global $db, $msg, $quota, $L_FQDN, $tld, $cuid, $hooks, $domislocked;
+        global $db, $msg, $quota, $L_FQDN, $tld, $cuid, $hooks, $domislocked, $mem;
         $msg->log("dom", "add_domain", $domain);
 
         // Locked ?
@@ -724,7 +724,7 @@ class m_dom {
             return false;
         }
         $this->dns = $this->whois($domain);
-        if (!$force) {
+        if (!$force && !$mem->checkright()) {
             $v = checkhostallow($domain, $this->dns);
             if ($v == -1) {
                 $msg->raise("ERROR", "dom", _("The last member of the domain name is incorrect or cannot be hosted in that server"));
