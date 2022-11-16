@@ -1,3 +1,25 @@
+alternc (3.5.0+dp3) buster; urgency=medium
+
+  [ quenenni ]
+  * allow hyphens in login names
+  * allow login names up to 20 characters (instead of 16)
+  * m_dom: allow multiple parts domain names when dns records are not hosted
+  * hook_dom_del_mx_domain: delete dkim file when removing dkim record or when disabling mx records
+  * adm_doms: use punnycode in function checkalldom (disable IDN dig output)
+  * templates/postfix/myquota.cf: fix error in query string
+  * templates/proftpd/proftpd.conf: disable MultilineRFC2228 to solve charset issue, see https://github.com/proftpd/proftpd/issues/1089
+  * templates/roundcube/plugins/managesieve: updated managesieve config template to v1.4.13 (Debian buster Roundcube version atm)
+  * alias_view + templates: filter out domains we do not host mx records
+
+  [ Christophe Siraut ]
+  * m_dom: include subdomains when matching forbidden domains
+  * m_dom: bypass checkhostallow conditions when admin adds a domain name
+  * m_bind: preserve opendkim signatures
+  * m_dom: update txt records status on change
+  * debian/config: do not reset alternc_mail_password on upgrade
+
+ -- Christophe Siraut <d@tobald.eu.org>  Wed, 16 Nov 2022 10:20:45 +0100
+
 alternc (3.5.0+dp2) buster; urgency=medium
 
   * merge changes from koumbit 
