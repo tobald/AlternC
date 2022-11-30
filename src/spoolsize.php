@@ -25,7 +25,7 @@ if ($db->query("SELECT uid,login FROM membres;")) {
       $size=exec("/usr/bin/du -s /var/www/alternc/".substr($login,0,1)."/".$login);
     }
     $db2->query("REPLACE INTO size_web SET uid=?, size=?;",array(intval($db->f('uid')),intval($size)));
-    echo $db->f('login')." (".(round($size/1024, 1))." MB)\n";
+    echo $db->f('login')." (".(round(intval($size)/1024, 1))." MB)\n";
   }
 }
 
