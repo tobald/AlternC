@@ -1,3 +1,18 @@
+alternc (3.5.0+dp4) buster; urgency=medium
+
+  [ Christophe Siraut ]
+  * m_dom: when adding a domain use https by default
+  * dom_edit: when adding a subdomain use https by default
+
+  [ Quenenni ]
+  * adm_domstype : add has_https_option column
+  * spoolsize: prevent raising "a non well formed numeric value encountered" in spoolsize cron
+  * dom_doadd: notify user about certificate creation and dns propagation delay
+  * hta_doadd: notify user when folder protection is activated
+  * update translations
+
+ -- Christophe Siraut <d@tobald.eu.org>  Fri, 09 Dec 2022 09:52:05 +0100
+
 alternc (3.5.0+dp3) buster; urgency=medium
 
   [ quenenni ]
