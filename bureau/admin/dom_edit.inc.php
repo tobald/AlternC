@@ -57,11 +57,8 @@ $dom->unlock();
             <input type="hidden" name="sub_domain_id" value="<?php echo intval($sub_domain_id); ?>" />
             <input type="hidden" name="action" value="add" />
   <?php
-   if ($isedit) {
-     __("Edit a subdomain:"); 
-   } else {
+   if (!$isedit)
      __("Create a subdomain:"); 
-   }
 ?></td><td>
    <input type="text" class="int" name="sub" style="text-align:right" value="<?php ehe($sub); ?>" size="22" id="sub" /><span class="int" id="newsubname">.<?php ehe($domain); ?></span></td>
    <td></td>
