@@ -119,7 +119,7 @@ $dom->unlock();
 
         switch ($dt['target']) {
           case "URL": ?>
-              <input type="text" class="int" name="t_<?php ehe($dt['name']); ?>" id="t_<?php ehe($dt['name']); ?>" value="<?php ehe( (empty($targval)?'http://':$targval) ); ?>" size="50" onKeyPress="getElementById('r_<?php ehe($dt['name']); ?>').checked=true;" />
+              <input type="text" class="int" name="t_<?php ehe($dt['name']); ?>" id="t_<?php ehe($dt['name']); ?>" value="<?php ehe( (empty($targval)?'https://':$targval) ); ?>" size="50" onKeyPress="getElementById('r_<?php ehe($dt['name']); ?>').checked=true;" />
               <small><?php __("(enter an URL here)"); ?></small><?php
               break;;
           case 'IP':?>
