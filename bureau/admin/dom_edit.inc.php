@@ -60,7 +60,7 @@ $dom->unlock();
    if (!$isedit)
      __("Create a subdomain:"); 
 ?></td><td>
-   <input type="text" class="int" name="sub" style="text-align:right" value="<?php ehe($sub); ?>" size="22" id="sub" /><span class="int" id="newsubname">.<?php ehe($domain); ?></span></td>
+   <input type="text" class="int" name="sub" style="text-align:right" value="<?php ehe($sub); ?>" size="22" id="sub" /><span id="newsubname">.<?php ehe($domain); ?></span></td>
    <td></td>
         </tr>
   <?php
