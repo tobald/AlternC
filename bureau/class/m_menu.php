@@ -43,6 +43,11 @@ class m_menu {
         // Merge it !
         $lst = array_merge($sm, $lsto);
 
+        foreach ($lst as $k => $v) {
+          // temporary fix : remove non-compliant menu-items, $v happens to be false or null
+          if (!is_array($v)) unset($lst[$k]);
+        }
+
         // Sort it
         uasort($lst, 'm_menu::order_menu');
 
