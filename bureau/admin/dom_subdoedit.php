@@ -74,7 +74,7 @@ if (!$r) {
   $t = time();
   // TODO: we assume the cron job is at every 5 minutes
   $noread=false;
-  $msg->raise("INFO", "dom", _("The modifications will take effect at %s. Server time is %s."), array(date('H:i:s', ($t-($t%300)+300)), date('H:i:s', $t)));
+  $msg->raise("ALERT", "dom", _("The certificate will be created in the next hours. The propagation of the new domain name requires a bit of time."));
   foreach($fields as $k=>$v) unset($$k);
 }
 include("dom_edit.php");
