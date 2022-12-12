@@ -154,16 +154,17 @@ $dom->unlock();
     <?php } // foreach ?>
 
         <tr class="trbtn">
-            <td colspan="2"><button type="submit" class="inb ok" name="add" onclick='return check_type_selected();'><?php
+        <td colspan="2">
+        <?php if ($isedit) { ?>
+        <button class="inb cancel" type="button" name="cancel" onclick="document.location = 'dom_edit.php?domain=<?php echo $domain; ?>'"><?php __("Cancel"); ?></button>
+        <?php } ?>
+        <button type="submit" class="inb ok" name="add" onclick='return check_type_selected();'><?php
    if ($isedit) {
  __("Edit this subdomain");
 } else {
  __("Add this subdomain");
 } 
 ?></button>
-<?php if ($isedit) { ?>
-              <button class="inb cancel" type="button" name="cancel" onclick="document.location = 'dom_edit.php?domain=<?php echo $domain; ?>'"><?php __("Cancel"); ?></button>
-<?php } ?>
 </td>
         </tr>
     </table>
