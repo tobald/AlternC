@@ -119,24 +119,21 @@ $dom->unlock();
 
         switch ($dt['target']) {
           case "URL": ?>
-              <input type="text" class="int" name="t_<?php ehe($dt['name']); ?>" id="t_<?php ehe($dt['name']); ?>" value="<?php ehe( (empty($targval)?'https://':$targval) ); ?>" size="50" onKeyPress="getElementById('r_<?php ehe($dt['name']); ?>').checked=true;" />
-              <small><?php __("(enter an URL here)"); ?></small><?php
+              <input type="text" class="int" name="t_<?php ehe($dt['name']); ?>" id="t_<?php ehe($dt['name']); ?>" value="<?php ehe( (empty($targval)?'':$targval) ); ?>" placeholder="https://www.toto.org" size="50" onKeyPress="getElementById('r_<?php ehe($dt['name']); ?>').checked=true;" /><?php
               break;;
           case 'IP':?>
-              <input type="text" class="int" name="t_<?php ehe($dt['name']); ?>" id="t_<?php ehe($dt['name']); ?>"  value="<?php ehe($targval); ?>" size="16" onKeyPress="getElementById('r_<?php ehe($dt['name']); ?>').checked=true;" />
-            <small><?php __("(enter an IPv4 address, for example 192.168.1.2)"); ?></small><?php
+              <input type="text" class="int" name="t_<?php ehe($dt['name']); ?>" id="t_<?php ehe($dt['name']); ?>"  value="<?php ehe($targval); ?>" placeholder="1.2.3.4" size="16" onKeyPress="getElementById('r_<?php ehe($dt['name']); ?>').checked=true;" /><?php
               break;
           case 'IPV6':?>
-            <input type="text" class="int" name="t_<?php ehe($dt['name']); ?>" id="t_<?php ehe($dt['name']); ?>" value="<?php ehe($targval); ?>" size="32" onKeyPress="getElementById('r_<?php ehe($dt['name']); ?>').checked=true;" /> 
-            <small><?php __("(enter an IPv6 address, for example 2001:0910::0)"); ?></small><?php
+            <input type="text" class="int" name="t_<?php ehe($dt['name']); ?>" id="t_<?php ehe($dt['name']); ?>" value="<?php ehe($targval); ?>" placeholder="2001:0db8:85a3:0000:0000:8a2e:0370:7334" size="32" onKeyPress="getElementById('r_<?php ehe($dt['name']); ?>').checked=true;" /><?php
               break;
           case 'TXT':?>
               <input type="text" class="int" name="t_<?php ehe($dt['name']); ?>" id="t_<?php ehe($dt['name']); ?>" value="<?php ehe($targval);?>" size="32" onKeyPress="getElementById('r_<?php ehe($dt['name']); ?>').checked=true;" />
-            <small><?php __("(enter a TXT content for this domain)"); ?></small><?php
+              <?php
               break;
           case 'DOMAIN':?>
-              <input type="text" class="int" name="t_<?php ehe($dt['name']); ?>" id="t_<?php ehe($dt['name']); ?>" value="<?php ehe($targval);?>" size="32" onKeyPress="getElementById('r_<?php ehe($dt['name']); ?>').checked=true;" /> 
-            <small><?php __("(enter a domain name or subdomain)"); ?></small><?php
+              <input type="text" class="int" name="t_<?php ehe($dt['name']); ?>" id="t_<?php ehe($dt['name']); ?>" value="<?php ehe($targval);?>" placeholder=<?= "toto.".$domain ?> size="32" onKeyPress="getElementById('r_<?php ehe($dt['name']); ?>').checked=true;" />
+<?php
               break;
           case "NONE":
           default:
