@@ -30,6 +30,7 @@ $fields = array (
 	"sub"       => array ("post", "string", ""),
 	"type"      => array ("post", "string", $dom->type_local),
   	"sub_domain_id" => array ("post", "integer", 0),
+	"vhost_type" => array ("post", "string", ""),
 );
 getFields($fields);
 
@@ -54,6 +55,7 @@ if ( (!isset($isinvited) || !$isinvited) && $dt[strtolower($type)]["enable"] != 
   exit();
 }
 
+if ($type == "vhost" && isset($vhost_type)) $type = $vhost_type;
 if (empty($sub_domain_id)) $sub_domain_id=null;
 $r=$dom->set_sub_domain($domain, $sub, $type, $value, $sub_domain_id, $https);
 

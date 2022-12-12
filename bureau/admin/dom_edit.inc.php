@@ -66,14 +66,39 @@ $dom->unlock();
    <input type="text" class="int" name="sub" style="text-align:right" value="<?php ehe($sub); ?>" size="22" id="sub" /><span class="int" id="newsubname">.<?php ehe($domain); ?></span></td>
    <td></td>
         </tr>
-    <?php 
+  <?php
+   $domain_types = $dom->domain_types($sd);
+   $vhost_types = array_filter($domain_types, function($i) {return $i['target'] == 'DIRECTORY';});
+   if (in_array($sd['type'], array_map(function($t) {return $t['name'];}, $vhost_types))) {
+       $checked = true;
+       $input_value = $sd['dest'];
+   } else {
+       $checked = '';
+       $input_value = '';
+   }
+   if (!empty($vhost_types)) {?>
+        <tr>
+          <td>
+          <input type="radio" id="r_vhost" class="inc" name="type" value="vhost" <?php if ($checked) echo 'checked="checked"'; ?> OnClick="getElementById('t_vhost').focus();"/>
+          <label for="r_vhost"><?php __('Locally hosted'); ?></label>
+          </td>
+          <td>
+          <input type="text" class="int" name="t_vhost" id="t_vhost" value="<?= $input_value ?>" size="28" onKeyPress="getElementById('r_vhost').checked=true;" />
+          <?php display_browser($sd['dest'], "t_vhost" ); ?> &nbsp;
+          <label for="vhost_type"><?php __('Type'); ?></label>
+          <select class="inl" name="vhost_type" id="vhost_type">
+            <?php foreach ($vhost_types as $vt) { ?>
+            <option value="<?= $vt['name']; ?>"<?php selected($vt['selected'] || false); ?>><?= $vt['display_name']; ?></option>
+            <?php } ?>
+          </select>
+          </td>
+        </tr>
+    <?php
+    }
       $first_advanced=true;
       $lst_advanced=array();
-      foreach($dom->domains_type_lst() as $dt) { 
-        // If this type is disabled AND it's not the type in use here, continue
-        if ( $dt['enable'] == 'NONE' && strtoupper($type)!=strtoupper($dt['name'])) continue ;
-        // If this type is only for ADMIN and i'm not an admin, continue (oldid is to check if we are an admin who take user identity)
-        if (( $dt['enable'] == 'ADMIN') && (! $admin->enabled and ! intval($oldid))) continue;
+      $other_dom_types = array_filter($domain_types, function($i) {return $i['target'] != 'DIRECTORY';});
+      foreach($other_dom_types as $dt) {
 
         if ( (! $r['dns'] ) and ($dt['need_dns']) ) continue;
         $targval=(strtoupper($type)==strtoupper($dt['name']))?$sd['dest']:'';
@@ -96,10 +121,6 @@ $dom->unlock();
         <?php 
 
         switch ($dt['target']) {
-          case "DIRECTORY": ?>
-            <input type="text" class="int" name="t_<?php ehe($dt['name']); ?>" id="t_<?php ehe($dt['name']); ?>" value="<?php ehe($targval); ?>" size="28" onKeyPress="getElementById('r_<?php ehe($dt['name']); ?>').checked=true;" />
-            <?php display_browser( $targval , "t_".$dt['name'] ); 
-            break;
           case "URL": ?>
               <input type="text" class="int" name="t_<?php ehe($dt['name']); ?>" id="t_<?php ehe($dt['name']); ?>" value="<?php ehe( (empty($targval)?'http://':$targval) ); ?>" size="50" onKeyPress="getElementById('r_<?php ehe($dt['name']); ?>').checked=true;" />
               <small><?php __("(enter an URL here)"); ?></small><?php
