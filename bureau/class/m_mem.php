@@ -639,7 +639,7 @@ Cordially.
      * @return boolean TRUE if the help has been shown, FALSE if not.
      */
     function show_help($file, $force = false) {
-        if ($this->user["show_help"] || $force) {
+        if (isset($this->user) && $this->user["show_help"] || $force) {
             $hlp = _("hlp_$file");
             if ($hlp != "hlp_$file") {
                 $hlp = preg_replace(
