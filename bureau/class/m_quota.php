@@ -80,7 +80,7 @@ class m_quota {
 	            
                 $totalsize_used = $quota->get_size_web_sum_user($cuid) + $quota->get_size_mailman_sum_user($cuid) + ($quota->get_size_db_sum_user($mem->user["login"]) + $quota->get_size_mail_sum_user($cuid))/1024;
                 $usage_percent = (int) ($totalsize_used / $q[$key]["t"] * 100);
-                $obj['links'][] = array('txt' => _("quota_" . $key) . " " . sprintf(_("%s%% of %s"), $usage_percent, format_size($q[$key]["t"] * 1024)), 'url' => 'quota_show.php');
+                $obj['links'][] = array('txt' => _("quota_" . $key) . " " . sprintf(_("%d%% of %s"), $usage_percent, format_size($q[$key]["t"] * 1024)), 'url' => 'quota_show.php');
                 $obj['links'][] = array('txt' => 'progressbar', 'total' => $q[$key]["t"], 'used' => $totalsize_used);
             }
 
