@@ -72,6 +72,51 @@ class m_mem {
     }
 
 
+    /**
+     * Designates that a user has all permissions
+     * @return boolean
+     */
+    function is_superuser() {
+       return ($this->user["su"] == "1" or $this->authenticate_cookie());
+    }
+
+
+    /**
+     * Designates cookie has valid authentication data
+     * @return int|false
+     */
+    function authenticate_cookie() {
+        global $admin;
+        if (isset($_COOKIE["oldid"]) && !empty($_COOKIE["oldid"])) {
+            list($newuid, $passcheck) = explode("/",$_COOKIE["oldid"]);
+            $newuid = intval($newuid);
+            if ($newuid) {
+                $admin->enabled = true;
+                $r = $admin->get($newuid);
+                if ($passcheck == md5($r["pass"]))
+                    return $newuid;
+            }
+        }
+        return false;
+    }
+
+
+    /**
+     * Restore original user account
+     * @return boolean
+     */
+    function undo_impersonation() {
+        $oid = $this->authenticate_cookie();
+        if ($oid) {
+            setcookie('oldid','',0,'/');
+            unset($_COOKIE['oldid']);
+            if ($this->setid($oid))
+               return true;
+        }
+        return false;
+    }
+
+
     /** 
      * Start a session in the web desktop. Check username and password.
      * <b>Note : </b>If the user entered a bas password, the failure will be logged
