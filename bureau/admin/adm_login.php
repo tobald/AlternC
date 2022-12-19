@@ -37,34 +37,13 @@ $fields = array (
 getFields($fields);
 
 // * with no parameter when the admin want to go back to his admin account.  
-if ( empty($id) && isset($_COOKIE["oldid"]) && !empty($_COOKIE["oldid"])) {
-  // We check the cookie's value : 
-  list($newuid,$passcheck)=explode("/",$_COOKIE["oldid"]);
-  $newuid=intval($newuid); 
-  if (!$newuid) {
-    $msg->raise("ERROR", "admin", _("Your authentication information are incorrect"));
-    include("index.php");
-    exit();
+if (empty($id)) {
+  if ($mem->undo_impersonation()) {
+      include_once("adm_list.php");
+      exit();
   }
-  $admin->enabled=true;
-  $r=$admin->get($newuid);
-  if ($passcheck!=md5($r["pass"])) {
-    $msg->raise("INFO", "admin", _("Your authentication information are incorrect"));
-    include("index.php");
-    exit();
-  }
-
-  // Ok, so we remove the cookie : 
-  setcookie('oldid','',0,'/');
-  unset($_COOKIE['oldid']);
-
-  // And we go back to the former administrator account : 
-  if (!$mem->setid($newuid)) {
-    include("index.php");
-    exit();
-  }
-
-  include_once("adm_list.php");
+  $msg->raise("ERROR", "admin", _("Your authentication information are incorrect"));
+  include("index.php");
   exit();
 }
 
