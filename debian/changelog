@@ -1,3 +1,22 @@
+alternc (3.5.0+dp5) buster; urgency=medium
+
+  [ Christophe Siraut ]
+  * dom_subedit: misc template improvements
+  * adm_login: use method undo_impersonation
+  * misc: when adding a vhost use a drop-down list to select the type
+  * m_dom: add method domain_types
+  * m_mem: add methods authenticate_cookie, undo_impersonation and is_superuser
+  * m_mem: ensure user object exists
+  * m_menu: remove non-compliant menu items
+  * m_quota: usage percent is integer
+  * templates/apache2.conf: add /etc/opendkim/keys to open_basedir
+  * update translations
+
+  [ Quenenni ]
+  * dom_subdoedit: notify user about domain name propagation delay
+
+ -- Christophe Siraut <d@tobald.eu.org>  Tue, 20 Dec 2022 14:57:50 +0100
+
 alternc (3.5.0+dp4) buster; urgency=medium
 
   [ Christophe Siraut ]
