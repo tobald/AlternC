@@ -2081,4 +2081,34 @@ class m_dom {
         _("Email autoconfiguration");
     }
 
+
+    /**
+     * @param array $sd subdomain
+     * @return array Tableau des types disponibles pour un sous-domaine
+     */
+    function domain_types($sd) {
+        global $mem;
+        $result = array();
+        $php_version = preg_split('/\./', phpversion(), 3)[0];
+        $is_superuser = $mem->is_superuser();
+        foreach($this->domains_type_lst() as $dt) {
+            if (strtoupper($sd['type']) != strtoupper($dt['name'])) {  // tests type is not currently in use
+                if ($dt['enable'] == 'NONE') continue;
+                if ($dt['enable'] == 'ADMIN' && !$is_superuser) continue;
+            }
+            $entry = $dt;
+            $entry['selected'] = false;
+            if (isset($sd['type']) && $sd['type'] == $entry['name'])
+                $entry['selected'] = true;
+            $entry['display_name'] = str_replace(['-', '_'], [' ', ''] , $entry['name']);
+            if (strtolower($dt['name']) == 'vhost')
+                $entry['display_name'] = str_replace('%', $php_version, 'php %');
+            else if (preg_match("/^php(\d+)-fpm$/", $entry['name'], $match))
+                $entry['display_name'] = 'php '.(implode('.', str_split($match[1]))).' fpm';
+            $result[] = $entry;
+            }
+        return $result;
+    }
+
+
 } /* Class m_domains */
