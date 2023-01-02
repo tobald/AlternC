@@ -97,7 +97,7 @@ foreach ($userslist as $user ){
 		  <form method="post" action="piwik_user_dodel.php" name="<?php echo $form_id; ?>" id="<?php echo $form_id; ?>">
 		    <?php csrf_get(); ?>
 		    <input type="hidden" name="login" value="<?php ehe($user->login);?>" />
-		    <input type="button" class="ina" name="delete" value="<?php __("Delete"); ?>" onclick="document.getElementById('<?php echo $form_id; ?>').submit();" style="background: url('/images/delete.png') no-repeat 3px 3px; padding-left: 16px;" />
+		    <input type="button" class="ina" name="delete" value="<?php __("Delete"); ?>" onclick="document.getElementById('<?php echo $form_id; ?>').submit();" style="background: url('/images/delete.png') no-repeat 5px 6px; padding-left: 26px;" />
 		  </form>
 		</div>
 	</td>
