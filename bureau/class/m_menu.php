@@ -126,8 +126,7 @@ class m_menu {
             'help' =>
             array(
                 'title' => _("Online help"),
-                'target' => 'help',
-                'link' => $help_baseurl,
+                'link' => 'about.php',
                 'pos' => 140,
             ),
             'lang' =>
