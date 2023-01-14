@@ -82,6 +82,14 @@ class Alternc_Api_Object_Mail extends Alternc_Api_Legacyobject {
      * @return Alternc_Api_Response whose content is 
      */
     function create($options) {
+        global $cuid, $mem;
+        if ($this->isAdmin) {
+            if (isset($options["uid"])) {
+                $cuid = intval($options["uid"]);
+                $mem->su($cuid);
+            }
+        }
+
         $defaults = array("type" => "");
         $mandatory = array("dom_id", "mail");
         $missing = "";

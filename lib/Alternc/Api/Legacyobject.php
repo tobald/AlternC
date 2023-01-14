@@ -36,8 +36,8 @@ class Alternc_Api_Legacyobject {
      * from AlternC legacy class
      */
     protected function alterncLegacyErrorManager() {
-        global $err;
-        return new Alternc_Api_Response(array("code" => self::ERR_ALTERNC_FUNCTION, "message" => "[" . $err->clsid . "] " . $err->error));
+        global $msg;
+        return new Alternc_Api_Response(array("code" => self::ERR_ALTERNC_FUNCTION, "message" => $msg->msg_str));
     }
 
     /** ensure that offset & count are set properly from $options.

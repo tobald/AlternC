@@ -13,15 +13,23 @@ class Alternc_Api_Object_Mysql extends Alternc_Api_Legacyobject {
         $this->mysql = $mysql;
     }
 
-    /** API Method from legacy class method admin->add_mem()
+    /** API Method from legacy class method mysql->add_db)
      * @param $options a hash with parameters transmitted to legacy call
-     * mandatory parameters: login, pass, nom, prenom, mail, 
-     * non-mandatory: canpass, type, duration, notes, force, create_dom, db_server_id
+     * mandatory parameters: dbn
+     * non-mandatory: passwd
      * @return Alternc_Api_Response whose content is the newly created UID
      */
     function add($options) {
-        $mandatory = array("login", "pass", "nom", "prenom", "mail");
-        $defaults = array("canpass" => 1, "type" => "default", "duration" => 0, "notes" => "", "force" => 0, "create_dom" => "");
+        global $cuid, $mem;
+        if ($this->isAdmin) {
+            if (isset($options["uid"])) {
+                $cuid = intval($options["uid"]);
+                $mem->su($cuid);
+            }
+        }
+
+        $mandatory = array("dbn");
+        $defaults = array("psswd" => "");
         $missing = "";
         foreach ($mandatory as $key) {
             if (!isset($options[$key])) {
@@ -31,18 +39,14 @@ class Alternc_Api_Object_Mysql extends Alternc_Api_Legacyobject {
         if ($missing) {
             return new Alternc_Api_Response(array("code" => self::ERR_INVALID_ARGUMENT, "message" => "Missing or invalid argument: " . $missing));
         }
+
         foreach ($defaults as $key => $value) {
             if (!isset($options[$key])) {
                 $options[$key] = $value;
             }
         }
-        if (!isset($options["db_server_id"])) {
-            $stmt = $this->db->prepare("SELECT MIN(db_servers.id) AS id FROM db_servers;");
-            $stmt->execute();
-            $me = $stmt->fetch(PDO::FETCH_OBJ);
-            $options["db_server_id"] = $me->id;
-        }
-        $uid = $this->admin->add_mem($options["login"], $options["pass"], $options["nom"], $options["prenom"], $options["mail"], $options["canpass"], $options["type"], $options["duration"], $options["notes"], $options["force"], $options["create_dom"], $options["db_server_id"]);
+
+        $uid = $this->mysql->add_db($options["dbn"], $options["psswd"]);
         if (!$uid) {
             return $this->alterncLegacyErrorManager();
         } else {

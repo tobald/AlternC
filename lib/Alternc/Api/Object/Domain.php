@@ -90,6 +90,14 @@ class Alternc_Api_Object_Domain extends Alternc_Api_Legacyobject {
      * @return Alternc_Api_Response whose content is the newly created DOMAIN id
      */
     function add($options) {
+        global $cuid, $mem, $domislocked, $dom;
+        if ($this->isAdmin) {
+            if (isset($options["uid"])) {
+                $cuid = intval($options["uid"]);
+                $mem->su($cuid);
+                $dom->lock();
+            }
+        }
         $mandatory = array("domain", "dns");
         $defaults = array("noerase" => false, "force" => false, "isslave" => false, "slavedom" => "");
         $missing = "";

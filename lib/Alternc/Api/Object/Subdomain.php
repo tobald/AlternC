@@ -52,14 +52,15 @@ class Alternc_Api_Object_Subdomain extends Alternc_Api_Legacyobject {
      * if the change has been made
      */
     function set($options) {
-        global $cuid;
+        global $cuid, $mem;
         if ($this->isAdmin) {
             if (isset($options["uid"])) {
                 $cuid = intval($options["uid"]);
+                $mem->su($cuid);
             }
         }
         $mandatory = array("dom", "sub", "type", "dest");
-        $defaults = array("sub_domain_id" => null);
+        $defaults = array("sub_domain_id" => null, "https" => "both");
         $missing = "";
         foreach ($mandatory as $key) {
             if (!isset($options[$key])) {
@@ -75,7 +76,7 @@ class Alternc_Api_Object_Subdomain extends Alternc_Api_Legacyobject {
             return new Alternc_Api_Response(array("code" => self::ERR_INVALID_ARGUMENT, "message" => "Missing or invalid argument: " . $missing));
         }
         $this->dom->lock();
-        $did = $this->dom->set_sub_domain($options["dom"], $options["sub"], $options["type"], $options["dest"], $options["sub_domain_id"]);
+        $did = $this->dom->set_sub_domain($options["dom"], $options["sub"], $options["type"], $options["dest"], $options["sub_domain_id"], $options["https"]);
         $this->dom->unlock();
         if (!$did) {
             return $this->alterncLegacyErrorManager();
