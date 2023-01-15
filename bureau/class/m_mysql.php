@@ -221,10 +221,10 @@ class m_mysql {
      * @return boolean if the database $user_$db has been successfully created, or FALSE if 
      * an error occured, such as over quota user.
      */
-    function add_db($dbn) {
+    function add_db($dbn, $password_user = null) {
         global $db, $msg, $quota, $cuid, $admin;
         $msg->log("mysql", "add_db", $dbn);
-        $password_user = "";
+
         if (!$quota->cancreate("mysql")) {
             $msg->raise("ERROR", "mysql", _("Your databases quota is over. You cannot create more databases"));
             return false;
@@ -256,17 +256,19 @@ class m_mysql {
             $msg->raise("ERROR", "mysql", _("Database %s already exists"), $dbn);
             return false;
         }
-        
-        // We prevent the automatic creation of user account longer than the max allowed lenght of a MySQL username 
+
+        // We prevent the automatic creation of user account longer than the max allowed lenght of a MySQL username
         $len=variable_get('sql_max_username_length', NULL);
         if (strlen($dbname) <= $len) {
             $db->query("SELECT name from dbusers where name= ? and enable='ACTIVATED' ;", array($dbname));
             if (!$db->num_rows()) {
-                // We get the password complexity set in the policy and ensure we have that complexity in the create_pass() call
-                $c=$admin->listPasswordPolicies();
-                $passwd_classcount = $c['mysql']['classcount'];
-                
-                $password_user = create_pass(10, $passwd_classcount);
+                if (!$password_user) {
+                    // We get the password complexity set in the policy and ensure we have that complexity in the create_pass() call
+                    $c=$admin->listPasswordPolicies();
+                    $passwd_classcount = $c['mysql']['classcount'];
+
+                    $password_user = create_pass(10, $passwd_classcount);
+                }
                 if ($this->add_user($dbn, $password_user, $password_user)) {
                     $msg->raise("INFO", "mysql", "L'utilisateur '$dbname' a été créé et les droits sur cette base de données lui ont été attribué.");
                 } else {
@@ -289,7 +291,7 @@ class m_mysql {
         }
 
         // Grant the special user every rights.
-        if ($this->dbus->exec("CREATE DATABASE $dbname;")) { // secured: dbname is checked against ^[0-9a-z]*$
+        if ($db->query("CREATE DATABASE `$dbname`;")) { // secured: dbname is checked against ^[0-9a-z]*$
             $msg->log("mysql", "add_db", "Success: ".$dbn);
             // Ok, database does not exist, quota is ok and dbname is compliant. Let's proceed
             $db->query("INSERT INTO db (uid,login,pass,db,bck_mode) VALUES (?, ?, ?, ? ,0)", array($cuid, $myadm, $password, $dbname));
@@ -299,7 +301,7 @@ class m_mysql {
             if (!empty($password_user)) {
                 $this->grant($dbname, $dbuser, "ALL PRIVILEGES", $password_user);
             }
-            $this->dbus->query("FLUSH PRIVILEGES;");
+            $db->query("FLUSH PRIVILEGES;");
             return true;
         } else {
             $msg->log("mysql", "add_db", "Error: ".$dbn);
@@ -457,7 +459,7 @@ class m_mysql {
         if (!preg_match("#^[0-9a-z\-_\\*\\\\]*$#", $base)) {
             $msg->raise("ERROR", "mysql", _("Database name can contain only letters, numbers and -"));
             return false;
-        } elseif (!$this->dbus->query("select db from db where db= ?;", array($base))) {
+        } elseif (!$db->query("select db from db where db= ?;", array($base))) {
             $msg->raise("ERROR", "mysql", _("Database not found"));
             return false;
         }
@@ -488,7 +490,7 @@ class m_mysql {
             $grant .= ";";
         }
 
-        if (!$this->dbus->query($grant)) {
+        if (!$db->query($grant)) {
             $msg->raise("ERROR", "mysql", _("Could not grant rights"));
             return false;
         }
