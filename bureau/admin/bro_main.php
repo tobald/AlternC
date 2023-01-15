@@ -649,7 +649,10 @@ else {
 <span class="ina">
 <a href="bro_tgzdown.php?dir=<?php eue(($R)?$R:"/"); ?>"><?php __("Download this folder"); ?></a>
 </span> &nbsp; 
-<?php printf(_("as a %s file"),$bro->l_tgz[$p["downfmt"]]); ?>
+<?php
+$path = $bro->convertabsolute($R, true);
+echo "(/".$mem->user["login"].$path."/)&nbsp;";
+printf(_("as a %s file"),$bro->l_tgz[$p["downfmt"]]); ?>
 </p>  
 <?php
 

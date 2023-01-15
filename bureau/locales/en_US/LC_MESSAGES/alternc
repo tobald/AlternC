@@ -2821,7 +2821,7 @@ msgstr ""
 
 #: ../admin/bro_main.php:654
 msgid "Download this folder"
-msgstr ""
+msgstr "Download current folder"
 
 #: ../admin/bro_main.php:656
 #, php-format

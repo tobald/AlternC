@@ -2835,7 +2835,7 @@ msgstr "utilisant un nom d'utilisateur et un mot de passe"
 
 #: ../admin/bro_main.php:654
 msgid "Download this folder"
-msgstr "Télécharger ce répertoire"
+msgstr "Télécharger le répertoire courant"
 
 #: ../admin/bro_main.php:656
 #, php-format
