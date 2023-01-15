@@ -148,7 +148,7 @@ foreach ($sitelist as $site ){
 
 	?>
 	<tr class="lst_clic<?php echo $col; ?>">
-	  <td><div class="ina"><a href="/piwik_site_dodel.php?siteid=<?php echo $site->id; ?>"><img src="images/delete.png" alt="<?php __("Delete"); ?>" /><?php __("Delete"); ?></a></div></td>
+	  <td><div class="ina"><a href="/piwik_site_dodel.php?siteid=<?php echo $site->id; ?>"><img src="images/delete.png" style="float:none;vertical-align:baseline;" alt="<?php __("Delete"); ?>" /><?php __("Delete"); ?></a></div></td>
   	  <td><?php echo $site->name ?></td>
           <td><?php echo $site->main_url ?></td>
 	  <td><textarea><?php echo $piwik->site_js_tag($site->id); ?></textarea></td>

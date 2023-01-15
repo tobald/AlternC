@@ -159,7 +159,6 @@ class m_piwik {
 
         $api_data = $this->call_privileged_page('API', 'UsersManager.getUsersAccessFromSite', array('idSite' => $site_id));
         if ($api_data !== FALSE) {
-            $api_data = $api_data[0]; // Data is in the first column
             foreach ($this->alternc_users AS $key=>$user) {
                 if (!array_key_exists($user, $api_data)) {
                     $api_data->$user = 'noaccess';
@@ -182,9 +181,10 @@ class m_piwik {
      */
     function get_user($user_login) {
         $api_data = $this->call_privileged_page('API', 'UsersManager.getUser', array('userLogin' => $user_login));
+        $api_data = (array) $api_data;
 
         if ($api_data)
-            return $api_data[0];
+            return $api_data;
         else
             return FALSE;
     }
@@ -349,6 +349,7 @@ class m_piwik {
                 $item->main_url = $site->main_url;
 
                 $user_data = $this->call_privileged_page('API', 'UsersManager.getUsersAccessFromSite', array('idSite' => $site->idsite));
+                $user_data = (array) $user_data;
 
                 //if (is_array($user_data)) {
                 // printvar($user_data);
