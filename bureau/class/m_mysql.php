@@ -21,7 +21,7 @@
 /**
  * MySQL user database management for AlternC.
  * This class manage user's databases in MySQL, and user's MySQL accounts.
- * 
+ *
  * @copyright AlternC-Team 2000-2017 https://alternc.com/
  */
 class DB_users extends DB_Sql {
@@ -31,10 +31,10 @@ class DB_users extends DB_Sql {
     /**
      * Creator
      */
-    function __construct() { 
+    function __construct() {
         // Sometimes we need to create this object with empty parameters, but by default we fill them with those of the current user's DB
         global $cuid, $db, $msg;
-      
+
         $db->query("select db_servers.* from db_servers, membres where membres.uid= ? and membres.db_server_id=db_servers.id;", array($cuid));
         if (!$db->next_record()) {
             $msg->raise("ERROR", 'db_user', _("There are no databases in db_servers for this user. Please contact your administrator."));
@@ -47,10 +47,10 @@ class DB_users extends DB_Sql {
         $this->User = $db->f('login');
         $this->Password = $db->f('password');
         $this->Client = $db->f('client');
-        $this->Database = "mysql"; 
-      
+        $this->Database = "mysql";
+
         parent::__construct("mysql", $db->f('host'), $db->f('login'), $db->f('password') );
-      
+
     }
 
 }
@@ -60,7 +60,7 @@ class m_mysql {
     var $dbus;
 
 
-    /** 
+    /**
      * Constructor
      * m_mysql([$mid]) Constructeur de la classe m_mysql, initialise le membre concerne
      */
@@ -131,7 +131,7 @@ class m_mysql {
     /**
      * Get the list of the database for the current user.
      * @return array returns an associative array as follow : <br>
-     *  "db" => database name "bck" => backup mode for this db 
+     *  "db" => database name "bck" => backup mode for this db
      *  "dir" => Backup folder.
      *  Returns an array (empty) if no databases
      */
@@ -151,7 +151,7 @@ class m_mysql {
 
     /**
      * Get the login and password of the special user able to connect to phpmyadmin
-     * @return array returns an associative array with login and password 
+     * @return array returns an associative array with login and password
      *  Returns FALSE if error
      */
     function php_myadmin_connect() {
@@ -181,9 +181,9 @@ class m_mysql {
     /**
      * Returns the details of a user's database.
      * $dbn is the name of the database (after the _) or nothing for the database "$user"
-     * @return string returns an associative array as follow : 
-     *  "db" => Name of the database 
-     *  "bck" => Current bckup mode 
+     * @return string returns an associative array as follow :
+     *  "db" => Name of the database
+     *  "bck" => Current bckup mode
      *  "dir" => Backup directory
      *  "size" => Size of the database (in bytes)
      *  "pass" => Password of the user
@@ -278,7 +278,7 @@ class m_mysql {
         } else {
             $msg->raise("ALERT", "mysql", "L'utilisateur '$dbname' n'a pas été automatiquement créé car il dépasse la limite de taille pour les utilisateurs qui est à $len<br>Allez à la page 'Utilisateurs Mysql' pour en créer un avec le nom que vous voulez.<br>Et n'oubliez pas de lui donner les droits sur la base de données.");
         }
-        
+
         // checking for the phpmyadmin user
         $db->query("SELECT * FROM dbusers WHERE uid= ? AND enable='ADMIN';", array($cuid));
         if ($db->num_rows()) {
@@ -309,12 +309,11 @@ class m_mysql {
             return false;
         }
     }
-    
 
     /**
      * Delete a database for the current user.
      * @param $dbname string Name of the database to delete. The db name is $user_$dbn
-     * @return boolean if the database $user_$db has been successfully deleted, or FALSE if 
+     * @return boolean if the database $user_$db has been successfully deleted, or FALSE if
      *  an error occured, such as db does not exist.
      */
     function del_db($dbname) {
@@ -430,14 +429,14 @@ class m_mysql {
             return false;
         }
 
-        // Check this password against the password policy using common API : 
+        // Check this password against the password policy using common API :
         if (is_callable(array($admin, "checkPolicy"))) {
             if (!$admin->checkPolicy("mysql", $login, $password)) {
                 return false; // The error has been raised by checkPolicy()
             }
         }
 
-        // Update all the "pass" fields for this user : 
+        // Update all the "pass" fields for this user :
         $db->query("UPDATE db SET pass= ? WHERE uid= ?;", array($password, $cuid));
         $this->dbus->query("SET PASSWORD FOR " .$login . "@" . $this->dbus->Client . "  = PASSWORD(?);", array($password));
         return true;
@@ -446,7 +445,7 @@ class m_mysql {
 
     /**
      * Function used to grant SQL rights to users:
-     * @base :database 
+     * @base :database
      * @user : database user
      * @rights : rights to apply ( optional, every rights apply given if missing
      * @pass : user password ( optional, if not given the pass stays the same, else it takes the new value )
@@ -498,10 +497,10 @@ class m_mysql {
     }
 
 
-    /** 
+    /**
      * Restore a sql database.
      * @param $file string The filename, relative to the user root dir, which contains a sql dump
-     * @param $stdout boolean shall-we dump the error to stdout ? 
+     * @param $stdout boolean shall-we dump the error to stdout ?
      * @param $id integer The ID of the database to dump to.
      * @return boolean TRUE if the database has been restored, or FALSE if an error occurred
      */
@@ -548,7 +547,7 @@ class m_mysql {
     }
 
 
-    /** 
+    /**
      * Get the size of a database
      * @param $dbname name of the database
      * @return integer database size
@@ -592,7 +591,6 @@ class m_mysql {
         return $c;
     }
 
-    
     function get_defaultsparam($dbn) {
         global $db, $mem, $msg, $cuid;
         $msg->debug("mysql", "getdefaults");
@@ -625,12 +623,12 @@ class m_mysql {
             // rTmp is the array where we put the informations from each loop, added to array $r
             $rTmp = array();
             $variable = $this->dbus->Record;
-            
+
             $dbu = $variable['User'];
-            
+
             $rTmp['Host'] = $this->dbus->f('Host');
             $rTmp['Rights']='All';
-            
+
             foreach ($listRights as $v) {
                 $right = $v."_priv";
                 if ($this->dbus->f($right) !== "Y") {
@@ -638,27 +636,26 @@ class m_mysql {
                     break;
                 }
             }
-            
+
             if (!$db->query("SELECT name,password from dbusers where name= ? and uid= ? ;", array($dbu, $cuid))) {
                 $msg->raise("ERROR", "mysql",_("Database not found")." (3)");
                 return false;
             }
-            
+
             if (!$db->num_rows()) {
                 $msg->raise("ERROR", "mysql",_("Database not found")." (4)");
                 return false;
             }
-            
+
             $db->next_record();
             $rTmp['user'] = $db->f('name');
             $rTmp['password'] = $db->f('password');
-            
+
             $r[] = $rTmp;
-            
+
         } // endwhile
         return $r;
     }
-    
 
     /**
      * Create a new user in MySQL rights tables
@@ -707,14 +704,14 @@ class m_mysql {
             return false;
         }
 
-        // Check this password against the password policy using common API : 
+        // Check this password against the password policy using common API :
         if (is_callable(array($admin, "checkPolicy"))) {
             if (!$admin->checkPolicy("mysql", $user, $password)) {
                 return false; // The error has been raised by checkPolicy()
             }
         }
 
-        // We add him to the user table 
+        // We add him to the user table
         $db->query("INSERT INTO dbusers (uid,name,password,enable) VALUES( ?, ?, ?, 'ACTIVATED');", array($cuid, $user, $password));
 
         $this->grant("*", $user, "USAGE", $password);
@@ -724,7 +721,7 @@ class m_mysql {
 
     /**
      * Change a user's MySQL password
-     * @param $usern the username 
+     * @param $usern the username
      * @param $password The password for this username
      * @param $passconf The password confirmation
      * @return boolean if the password has been changed in MySQL or FALSE if an error occurred
@@ -739,7 +736,7 @@ class m_mysql {
             return false;
         }
 
-        // Check this password against the password policy using common API : 
+        // Check this password against the password policy using common API :
         if (is_callable(array($admin, "checkPolicy"))) {
             if (!$admin->checkPolicy("mysql", $usern, $password)) {
                 return false; // The error has been raised by checkPolicy()
@@ -789,14 +786,14 @@ class m_mysql {
 
         if ( $caller_is_deldb )
             $msg->raise("INFO", "mysql", _("The user '%s' has been successfully deleted"), $user);
-        
+
         return true;
     }
 
 
     /**
      * Return the list of the database rights of user $user
-     * @param $user the username 
+     * @param $user the username
      * @return array An array of database name and rights
      */
     function get_user_dblist($user) {
@@ -904,7 +901,7 @@ class m_mysql {
             }
         }
 
-        // We reset all user rights on this DB : 
+        // We reset all user rights on this DB :
         $dbname = str_replace('_', '\_', $dbn);
         $this->dbus->query("SELECT * FROM mysql.db WHERE User = ? AND Db = ?;", array($user, $dbname));
 
@@ -919,7 +916,7 @@ class m_mysql {
         return TRUE;
     }
 
-    /** 
+    /**
      * list of all possible SQL rights
      */
     function available_sql_rights() {
@@ -927,9 +924,9 @@ class m_mysql {
     }
 
 
-    /** 
-     * Hook function called by the lxc class to set mysql_host and port 
-     * parameters 
+    /**
+     * Hook function called by the lxc class to set mysql_host and port
+     * parameters
      * @access private
      */
     function hook_lxc_params($params) {
@@ -944,7 +941,7 @@ class m_mysql {
     }
 
 
-    /** 
+    /**
      * Hook function called by the quota class to compute user used quota
      * Returns the used quota for the $name service for the current user.
      * @param $name string name of the quota
@@ -964,7 +961,7 @@ class m_mysql {
     }
 
 
-    /** 
+    /**
      * Hook function called when a user is created.
      * AlternC's standard function that create a member
      * @access private
@@ -988,7 +985,7 @@ class m_mysql {
     }
 
 
-    /** 
+    /**
      * Hook function called when a user is deleted.
      * AlternC's standard function that delete a member
      * @access private
@@ -1012,7 +1009,7 @@ class m_mysql {
     }
 
 
-    /** 
+    /**
      * Hook function called when a user is logged out.
      * We just remove the cookie created in admin/sql_admin.php
      * a @access private
@@ -1027,7 +1024,7 @@ class m_mysql {
     /**
      * Exports all the mysql information of an account
      * @access private
-     * EXPERIMENTAL 'sid' function ;) 
+     * EXPERIMENTAL 'sid' function ;)
      */
     function alternc_export_conf() {
         // TODO don't work with separated sql server for dbusers
@@ -1059,7 +1056,7 @@ class m_mysql {
     /**
      * Exports all the mysql databases a of give account to $dir directory
      * @access private
-     * EXPERIMENTAL 'sid' function ;) 
+     * EXPERIMENTAL 'sid' function ;)
      */
     function alternc_export_data($dir) {
         global $db, $msg, $cuid;
