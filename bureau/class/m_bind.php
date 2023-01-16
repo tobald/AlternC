@@ -237,7 +237,6 @@ class m_bind {
           dt.target AS TARGET,
           dt.entry  AS ORIGINAL_ENTRY,
           sd.valeur AS VALEUR,
-          sd.type AS TYPE,
           if(length(sd.sub)>0,sd.sub,'@') AS SUB
         FROM 
           sub_domaines sd,
@@ -250,10 +249,6 @@ class m_bind {
         ORDER BY ENTRY ;", array($domain));
         $t="";
         while ($db->next_record()) {
-            if ($db->f('TYPE') === 'dkim') {
-                $entry = $db->f('ENTRY');
-            }
-            else
             // TXT entries may be longer than 255 characters, but need
             // special treatment. @see https://kb.isc.org/docs/aa-00356
             if (strlen($db->f('VALEUR')) >= 256 && $db->f('TARGET') == 'TXT') {
