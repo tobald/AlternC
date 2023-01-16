@@ -1,3 +1,15 @@
+alternc (3.5.0+dp6) buster; urgency=medium
+
+  * templates: update opendkim.conf with bullseye defaults
+  * templates: set FixCRLF to help passing picky antispams
+  * templates/proftpd: remove outdated option IdentLookups (bullseye compat)
+  * templates/proftpd: use TLS 1.2, update ciphers
+  * Revert "m_bind: preserve opendkim signatures"
+  * database/sub_domaines: sset default value for https to an empty string (bullseye compat)
+  * database/variable: set dmarc policy to softfail
+
+ -- Christophe Siraut <d@tobald.eu.org>  Mon, 16 Jan 2023 21:09:16 +0100
+
 alternc (3.5.0+dp5) buster; urgency=medium
 
   [ Christophe Siraut ]
