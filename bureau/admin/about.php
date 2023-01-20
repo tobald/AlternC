@@ -28,6 +28,7 @@ To read the license please visit http://www.gnu.org/copyleft/gpl.html
 include("head.php");
 
 $help = variable_get('help_baseurl');
+$forge = variable_get('forge_url');
 ?>
 <body>
 <h3><?php __("About AlternC"); ?></h3>
@@ -42,7 +43,7 @@ __("AlternC is an automatic hosting software suite. It features a PHP-based admi
 <p>
   <ul>
     <li><?php __("Official website: ");?> <a target="_blank" href="https://alternc.com">http://alternc.com</a></li>
-    <li><?php __("Developer website: ");?> <a target="_blank" href="https://github.com/AlternC">https://github.com/AlternC</a></li>
+    <li><?php __("Developer website: ");?> <a target="_blank" href="<?= $forge ?>"><?= $forge ?></a></li>
     <?php if (!empty($help)) {?>
     <li><?php __("Help: ");?> <a target="_blank" href="<?=$help?>"><?=$help?></a></li>
     <?php }?>
