@@ -1147,7 +1147,7 @@ class m_dom {
         if ($db->Record["has_https_option"]) {
             $https=strtolower($https);
             if ($https!="http" && $https!="https" && $https!="both") {
-                return "https";
+                $https=variable_get("http_https_redirection", "https");
             }
             return $https;
         } else return "";
