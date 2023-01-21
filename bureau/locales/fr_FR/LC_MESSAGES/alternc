@@ -4056,6 +4056,10 @@ msgstr "Modifier cette adresse email"
 msgid "Create a new mail account"
 msgstr "Créer une nouvelle adresse email"
 
+#: ../admin/mail_list.php:56
+msgid "We are not managing the mx of this domain. The mail accounts won't work as such"
+msgstr "La gestion des mails pour ce domaine est inactive. La page est disponible pour du debug."
+
 #: ../admin/mail_list.php:59
 msgid "Manage Catch-all"
 msgstr "Gérer les Catch-all"

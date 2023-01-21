@@ -1,0 +1,1 @@
+INSERT IGNORE INTO variable (name, value, comment) VALUES ("show_non_mx_domains", "0", "Show domains in mail section for wich we aren't managing the MX. Useful when importing accounts (1 to activate / 0 to deactivate).");

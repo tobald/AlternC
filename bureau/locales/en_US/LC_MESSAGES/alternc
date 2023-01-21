@@ -4045,6 +4045,10 @@ msgstr ""
 msgid "Create a new mail account"
 msgstr ""
 
+#: ../admin/mail_list.php:56
+msgid "We are not managing the mx of this domain. The mail accounts won't work as such"
+msgstr "The mails for this domain aredeactivated. The page is showed only for debug purpose."
+
 #: ../admin/mail_list.php:59
 msgid "Manage Catch-all"
 msgstr ""

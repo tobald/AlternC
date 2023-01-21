@@ -45,8 +45,14 @@ if(!$domain_id ) {
 }
 
 if ($domain=$dom->get_domain_byid($domain_id)) {
-  $mails_list = $mail->enum_domain_mails($domain_id,$search,$offset,$count,$show_systemmails);
-  $allmails_list = $mail->enum_domain_mails($domain_id,$search,$offset,$count,'true');
+  $dom=new m_dom();
+  $dom->lock();
+  if ($dom->get_domain_all($domain)['mail']) {
+    $mails_list = $mail->enum_domain_mails($domain_id,$search,$offset,$count,$show_systemmails);
+    $allmails_list = $mail->enum_domain_mails($domain_id,$search,$offset,$count,'true');
+  } else
+    $msg->raise("ERROR","mail",_("We are not managing the mx of this domain. The mail accounts won't work as such"));
+  $dom->unlock();
 }
 ?>
 

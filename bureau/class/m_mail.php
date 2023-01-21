@@ -81,6 +81,7 @@ class m_mail {
      * Hook called by menu class to add the email menu to the left pane 
      */
     function hook_menu() {
+        global $isinvited;
         $obj = array(
             'title' => _("Email Addresses"),
             'link' => 'toggle',
@@ -88,7 +89,11 @@ class m_mail {
             'links' => array(),
         );
 
-        foreach ($this->enum_domains() as $d) {
+        $nonMx = variable_get("show_non_mx_domains", false);
+        $showall = false;
+        if ($isinvited && $nonMx) {$showall = true;}
+
+        foreach ($this->enum_domains(-1, $showall) as $d) {
             $obj['links'][] = array(
                 'txt' => htmlentities($d["domaine"]) . '&nbsp;' . htmlentities("(" . $d["nb_mail"] . ")"),
                 'url' => "mail_list.php?domain_id=" . urlencode($d['id']),
@@ -215,12 +220,17 @@ class m_mail {
      * Returns the list of mail-hosting domains for a user
      * @return array indexed array of hosted domains
      */
-    function enum_domains($uid = -1) {
+    function enum_domains($uid = -1, $showall = false) {
         global $db, $msg, $cuid;
         $msg->debug("mail", "enum_domains");
         if ($uid == -1) {
             $uid = $cuid;
         }
+
+        $gesmx = " AND gesmx = 1";
+        if ($showall)
+          $gesmx = "";
+
         $db->query("
 SELECT
   d.id,
@@ -230,7 +240,7 @@ FROM
   domaines d LEFT JOIN address a ON (d.id=a.domain_id AND a.type='')
 WHERE
   d.compte = ? 
-  and d.gesmx = 1
+  $gesmx
 GROUP BY
   d.id
 ORDER BY

@@ -4042,6 +4042,10 @@ msgstr "Verander dit email adres"
 msgid "Create a new mail account"
 msgstr "Maak een nieuw mail adres aan"
 
+#: ../admin/mail_list.php:56
+msgid "We are not managing the mx of this domain. The mail accounts won't work as such"
+msgstr ""
+
 #: ../admin/mail_list.php:59
 msgid "Manage Catch-all"
 msgstr ""
