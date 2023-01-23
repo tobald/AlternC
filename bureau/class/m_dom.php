@@ -2083,6 +2083,18 @@ class m_dom {
 
 
     /**
+     * @return array
+     */
+    function domain_types_available_for_defaults() {
+        global $db;
+        $output = array();
+        $db->query("SELECT UPPER(name) FROM domaines_type WHERE target='DIRECTORY' AND enable!='NONE' OR name IN ('url', 'roundcube', 'webmail') ORDER BY name DESC;");
+        while ($db->next_record()) $output[] = $db->Record[0];
+        return $output;
+    }
+
+
+    /**
      * @param array $sd subdomain
      * @return array Tableau des types disponibles pour un sous-domaine
      */
