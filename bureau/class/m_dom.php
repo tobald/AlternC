@@ -2104,7 +2104,18 @@ class m_dom {
         $result = array();
         $php_version = preg_split('/\./', phpversion(), 3)[0];
         $is_superuser = $mem->is_superuser();
-        foreach($this->domains_type_lst() as $dt) {
+        $domain_types = $this->domains_type_lst();
+
+        $default_dt = variable_get('default_vhost_template');
+        if (in_array($default_dt, array_keys($domain_types))) {
+            $sorted_domain_types[] = $domain_types[$default_dt];
+        }
+        foreach($domain_types as $dt) {
+            if ($dt['name'] == $default_dt) continue;
+            $sorted_domain_types[] = $dt;
+        }
+
+        foreach($sorted_domain_types as $dt) {
             if (strtoupper($sd['type']) != strtoupper($dt['name'])) {  // tests type is not currently in use
                 if ($dt['enable'] == 'NONE') continue;
                 if ($dt['enable'] == 'ADMIN' && !$is_superuser) continue;
