@@ -2100,6 +2100,7 @@ class m_dom {
      */
     function domain_types($sd) {
         global $mem;
+
         $result = array();
         $php_version = preg_split('/\./', phpversion(), 3)[0];
         $is_superuser = $mem->is_superuser();

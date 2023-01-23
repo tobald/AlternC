@@ -41,8 +41,10 @@ if (! empty($sub)) {
 */
 $sd=$dom->get_sub_domain_all($sub_domain_id);
 
-$type=$sd['type'];
-$sub=$sd['name'];
+if (is_array($sd)) {
+    $type=$sd['type'];
+    $sub=$sd['name'];
+}
 
 $dom->unlock();
 
@@ -60,13 +62,13 @@ $dom->unlock();
    if (!$isedit)
      __("Create a subdomain:"); 
 ?></td><td>
-   <input type="text" class="int" name="sub" style="text-align:right" value="<?php ehe($sub); ?>" size="22" id="sub" /><span id="newsubname">.<?php ehe($domain); ?></span></td>
+   <input type="text" class="int" name="sub" style="text-align:right" value="<?php if (isset($sub)) ehe($sub); ?>" size="22" id="sub" /><span id="newsubname">.<?php ehe($domain); ?></span></td>
    <td></td>
         </tr>
   <?php
    $domain_types = $dom->domain_types($sd);
    $vhost_types = array_filter($domain_types, function($i) {return $i['target'] == 'DIRECTORY';});
-   if (in_array($sd['type'], array_map(function($t) {return $t['name'];}, $vhost_types))) {
+   if (is_array($sd) && in_array($sd['type'], array_map(function($t) {return $t['name'];}, $vhost_types))) {
        $checked = true;
        $input_value = $sd['dest'];
    } else {
