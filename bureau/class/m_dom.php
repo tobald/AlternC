@@ -2129,6 +2129,9 @@ class m_dom {
                 $entry['display_name'] = str_replace('%', $php_version, _('default php (currently version %)'));
             else if (preg_match("/^php(\d+)-fpm$/", $entry['name'], $match))
                 $entry['display_name'] = 'php '.(implode('.', str_split($match[1]))).' fpm';
+
+            if ($entry['enable'] == 'ADMIN') $entry['display_name'] .= " (Admin)";
+
             $result[] = $entry;
             }
         return $result;
