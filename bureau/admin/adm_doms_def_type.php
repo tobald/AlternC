@@ -84,15 +84,15 @@ $tab = $dom->lst_default_subdomains();
 
                 <td><input type='text' size="16" name='domup[<?php echo $i; ?>][sub]' value="<?php echo $val['sub']; ?>"/></td>
                 <?php
-                $type = array("VHOST", "URL", "WEBMAIL", "");
-                if (in_array($val['domain_type'], $type)) {
-                    ?> 
-                    <td><select name='domup[<?php echo $i; ?>][domain_type]'>
-                            <option value='VHOST' <?php if ($val['domain_type'] == 'VHOST') echo "selected=\"selected\""; ?> >VHOST</option>
-                            <option value='URL' <?php if ($val['domain_type'] == 'URL') echo "selected=\"selected\""; ?> >URL</option>
-                            <option value='WEBMAIL' <?php if ($val['domain_type'] == 'WEBMAIL') echo "selected=\"selected\""; ?> >WEBMAIL</option>
-                        </select>
-                    <?php } else { ?>
+                $available_types = $dom->domain_types_available_for_defaults();
+                if (in_array($val['domain_type'], $available_types) || !isset($val)) {
+                    printf('<td><select name="domup[%s][domain_type]">', $i);
+                    foreach ($available_types as $t) {
+                      $selected = ($t == $val['domain_type']) ? "selected" : "";
+                      printf('<option value="%s" %s>%s</option>', $t, $selected, $t);
+                    }
+                    print("</select></td>");
+                } else { ?>
                     <td><input type="text" style="width:100px" name="domup[<?php echo $i; ?>][domain_type]" value="<?php echo $val['domain_type'] ?>" ></td>
                 <?php } ?>
                 <td><input type ='text' name='domup[<?php echo $i; ?>][domain_type_parameter]' value='<?php echo $val['domain_type_parameter'] ?>' /></td>
