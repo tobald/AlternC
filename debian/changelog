@@ -1,3 +1,32 @@
+alternc (3.5.0+dp7) buster; urgency=medium
+
+  [ Quenenni ]
+  * piwik_userlist: css adjustments for the delete button
+  * m_menu: redirect the help button to about.php
+  * about: do not hardcode help_baseurl; only display help_baseurl when defined
+  * aide/help.php: remove old params added to the help link
+  * bro_main: clarify the meaning of the 'download this folder' button
+  * piwik_sitelist: display piwik menu items (php 7.4 compat)
+  * api: fix a few methods
+  * api: add a new class for Mailman
+  * m_mysql: improvements for a working api
+  * m_mysql: linting
+  * mail_list: admins now able to list mail domains when mx records are not managed
+
+  [ Christophe Siraut ]
+  * about: parametrize forge_url
+  * adm_doms_def_type: prevent some undefined index errors
+  * m_dom: add domain_types_available_for_defaults()
+  * misc: prevent a few undefined index / variable / trying to access array offset on value of type bool
+  * adm_doms_def_type: allow all directory domain types to be used as default subdomains
+  * db/variable: add default_vhost_template
+  * m_dom: order domain_types() starting with default_vhost_type
+  * m_dom: display current php version in drop-down list
+  * m_dom: adapt domain type label when restricted
+  * update translations
+
+ -- Christophe Siraut <d@tobald.eu.org>  Mon, 23 Jan 2023 20:30:13 +0100
+
 alternc (3.5.0+dp6) buster; urgency=medium
 
   * templates: update opendkim.conf with bullseye defaults
