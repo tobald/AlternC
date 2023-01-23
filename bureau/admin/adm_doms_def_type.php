@@ -74,6 +74,7 @@ $tab = $dom->lst_default_subdomains();
                 <td>
                     <?php
                     @$val = $tab[$i];
+                    if (!isset($val)) $val = ['id'=>'', 'domain_type'=>'', 'concerned'=>'', 'enabled'=>'', 'sub'=>'', 'domain_type_parameter'=>'']; // fast hack to prevent undefined index errors
                     if (isset($tab[$i])) {
                         echo "<input type='hidden' name='domup[$i][id]' value='" . $val['id'] . "' />";
                     }
