@@ -22,6 +22,4 @@ $hooks->invoke('hook_mail_delete_for_real', array($mail_id, $mailinfos['address'
 
 // Bye bye
 
-echo "\n\n";
-
 ?>
