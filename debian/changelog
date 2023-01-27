@@ -1,3 +1,17 @@
+alternc (3.5.0+dp8) buster; urgency=medium
+
+  [ Christophe Siraut ]
+  * mail_dodelete: prenvent sending void cron emails
+
+  [ Kienan Stewart ]
+  * d/alternc.postinst: properly reload apparmor profile for usr.sbin.named during configuration
+  * do_actions: set the default action return code to 0
+
+  [ Daniel Viñar Ulriksen ]
+  * d/alternc.postinst: configures opendkim in buster and upper (closes #404)
+
+ -- Christophe Siraut <d@tobald.eu.org>  Fri, 27 Jan 2023 10:38:10 +0100
+
 alternc (3.5.0+dp7) buster; urgency=medium
 
   [ Quenenni ]
