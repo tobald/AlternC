@@ -28,7 +28,7 @@ include_once("head.php");
 
 $fields = array (
 	"newdomain"    => array ("post", "string", ""),
-	"dns"          => array ("post", "string", ""),
+	"dns"          => array ("post", "integer", 0),
 	"newisslave"   => array ("post", "integer" ,0), 
 	"slavedom"     => array ("post", "string" ,0), 
 );
