@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: alternc\n"
 "Report-Msgid-Bugs-To: i18n@alternc.org\n"
-"POT-Creation-Date: 2023-01-23 20:24+0100\n"
+"POT-Creation-Date: 2023-01-30 10:39+0100\n"
 "PO-Revision-Date: 2004-02-14 19:53-0400\n"
 "Last-Translator: Bruno Marmier <bruno@marmier.net>\n"
 "Language-Team: Espagnol <i18n@alternc.org>\n"
@@ -114,7 +114,7 @@ msgstr ""
 #: ../admin/adm_edit.php:92 ../admin/adm_passpolicy.php:110
 #: ../admin/adm_passpolicy.php:154 ../admin/dom_edit.php:302
 #: ../admin/dom_edit.php:325 ../admin/dom_subdel.php:76
-#: ../admin/mail_edit.php:97 ../admin/mail_list.php:166 ../admin/sql_bck.php:87
+#: ../admin/mail_edit.php:97 ../admin/mail_list.php:163 ../admin/sql_bck.php:87
 #: ../class/m_bro.php:63
 msgid "No"
 msgstr "Nein"
@@ -126,10 +126,10 @@ msgstr "Nein"
 #: ../admin/adm_edit.php:93 ../admin/adm_passpolicy.php:111
 #: ../admin/adm_passpolicy.php:154 ../admin/dom_edit.php:301
 #: ../admin/dom_edit.php:324 ../admin/dom_subdel.php:75
-#: ../admin/mail_edit.php:98 ../admin/mail_list.php:212
-#: ../admin/mail_list.php:225 ../admin/mail_list.php:238
-#: ../admin/mail_list.php:257 ../admin/mail_list.php:268
-#: ../admin/mail_list.php:279 ../admin/mail_list.php:290
+#: ../admin/mail_edit.php:98 ../admin/mail_list.php:209
+#: ../admin/mail_list.php:222 ../admin/mail_list.php:235
+#: ../admin/mail_list.php:254 ../admin/mail_list.php:265
+#: ../admin/mail_list.php:276 ../admin/mail_list.php:287
 #: ../admin/sql_bck.php:88 ../class/m_bro.php:63
 msgid "Yes"
 msgstr "Ja"
@@ -178,7 +178,7 @@ msgstr ""
 #: ../admin/adm_domstypeedit.php:133 ../admin/adm_edit.php:121
 #: ../admin/adm_quotaedit.php:78 ../admin/adm_tldadd.php:65
 #: ../admin/adm_tldedit.php:66 ../admin/bro_pref.php:146
-#: ../admin/browseforfolder2.php:143 ../admin/dom_edit.inc.php:161
+#: ../admin/browseforfolder2.php:143 ../admin/dom_edit.inc.php:168
 #: ../admin/dom_sslpref.php:117 ../admin/ftp_del.php:76
 #: ../admin/ftp_edit.php:98 ../admin/hta_adduser.php:67
 #: ../admin/hta_dodeluser.php:65 ../admin/hta_edit.php:121
@@ -260,7 +260,7 @@ msgstr ""
 #: ../admin/adm_list.php:211 ../admin/adm_list.php:238
 #: ../admin/adm_list.php:270 ../admin/adm_passpolicy.php:148
 #: ../admin/adm_tld.php:77 ../admin/bro_editor.php:99 ../admin/dom_edit.php:174
-#: ../admin/ftp_list.php:72 ../admin/ip_main.php:192 ../admin/mail_list.php:152
+#: ../admin/ftp_list.php:72 ../admin/ip_main.php:192 ../admin/mail_list.php:149
 msgid "Edit"
 msgstr ""
 
@@ -760,8 +760,8 @@ msgid "Compatibility"
 msgstr ""
 
 #: ../admin/adm_domstypeedit.php:95 ../admin/dom_edit.php:228
-#: ../admin/ftp_list.php:65 ../admin/ftp_list.php:76 ../admin/mail_list.php:127
-#: ../admin/mail_list.php:154
+#: ../admin/ftp_list.php:65 ../admin/ftp_list.php:76 ../admin/mail_list.php:124
+#: ../admin/mail_list.php:151
 msgid "Enabled"
 msgstr ""
 
@@ -997,7 +997,7 @@ msgstr ""
 msgid "Send an email"
 msgstr ""
 
-#: ../admin/adm_list.php:194 ../admin/mail_list.php:169
+#: ../admin/adm_list.php:194 ../admin/mail_list.php:166
 #, php-format
 msgid "%3$d-%2$d-%1$d"
 msgstr ""
@@ -1949,39 +1949,39 @@ msgstr ""
 msgid "Locally hosted"
 msgstr ""
 
-#: ../admin/dom_edit.inc.php:109
+#: ../admin/dom_edit.inc.php:96 ../admin/dom_edit.inc.php:156
+msgid "HTTPS (with HTTP redirect)"
+msgstr ""
+
+#: ../admin/dom_edit.inc.php:97 ../admin/dom_edit.inc.php:157
+msgid "HTTP (with HTTPS redirect)"
+msgstr ""
+
+#: ../admin/dom_edit.inc.php:98 ../admin/dom_edit.inc.php:158
+msgid "Both HTTP and HTTPS"
+msgstr ""
+
+#: ../admin/dom_edit.inc.php:116
 msgid "Show advanced options"
 msgstr ""
 
-#: ../admin/dom_edit.inc.php:110
+#: ../admin/dom_edit.inc.php:117
 msgid "Hide advanced options"
 msgstr ""
 
-#: ../admin/dom_edit.inc.php:149
-msgid "HTTPS Only (redirect HTTP to HTTPS)"
-msgstr ""
-
-#: ../admin/dom_edit.inc.php:150
-msgid "HTTP Only (redirect HTTPS to HTTP)"
-msgstr ""
-
-#: ../admin/dom_edit.inc.php:151
-msgid "Both HTTP and HTTPS hosted at the same place"
-msgstr ""
-
-#: ../admin/dom_edit.inc.php:165
+#: ../admin/dom_edit.inc.php:172
 msgid "Edit this subdomain"
 msgstr ""
 
-#: ../admin/dom_edit.inc.php:167
+#: ../admin/dom_edit.inc.php:174
 msgid "Add this subdomain"
 msgstr ""
 
-#: ../admin/dom_edit.inc.php:187
+#: ../admin/dom_edit.inc.php:194
 msgid "Missing value for this sub-domain"
 msgstr ""
 
-#: ../admin/dom_edit.inc.php:193
+#: ../admin/dom_edit.inc.php:200
 msgid "Please select a type for this sub-domain"
 msgstr ""
 
@@ -2080,7 +2080,7 @@ msgid "Activation pending"
 msgstr ""
 
 #: ../admin/dom_edit.php:235 ../admin/ftp_list.php:79
-#: ../admin/mail_list.php:146 ../admin/mail_list.php:156
+#: ../admin/mail_list.php:143 ../admin/mail_list.php:153
 msgid "Disabled"
 msgstr ""
 
@@ -2931,197 +2931,197 @@ msgstr ""
 msgid "Change this email address"
 msgstr ""
 
-#: ../admin/mail_list.php:56
+#: ../admin/mail_list.php:54
 msgid ""
 "We are not managing the mx of this domain. The mail accounts won't work as "
 "such"
 msgstr ""
 
-#: ../admin/mail_list.php:66
+#: ../admin/mail_list.php:63
 msgid "Create a new mail account"
 msgstr ""
 
-#: ../admin/mail_list.php:68
+#: ../admin/mail_list.php:65
 msgid "Manage Catch-all"
 msgstr ""
 
-#: ../admin/mail_list.php:82
+#: ../admin/mail_list.php:79
 msgid "Can't have empty mail."
 msgstr ""
 
-#: ../admin/mail_list.php:82
+#: ../admin/mail_list.php:79
 msgid "Create this email address"
 msgstr ""
 
-#: ../admin/mail_list.php:87
+#: ../admin/mail_list.php:84
 msgid "Manage Catch-all for this domain"
 msgstr ""
 
-#: ../admin/mail_list.php:94
+#: ../admin/mail_list.php:91
 #, php-format
 msgid "Email addresses of the domain %s"
 msgstr ""
 
-#: ../admin/mail_list.php:97
+#: ../admin/mail_list.php:94
 msgid "No mails for this domain."
 msgstr ""
 
-#: ../admin/mail_list.php:107
+#: ../admin/mail_list.php:104
 msgid "Search"
 msgstr ""
 
-#: ../admin/mail_list.php:112
+#: ../admin/mail_list.php:109
 msgid "Show system emails"
 msgstr ""
 
-#: ../admin/mail_list.php:119
+#: ../admin/mail_list.php:116
 msgid "Items per page:"
 msgstr ""
 
-#: ../admin/mail_list.php:127
+#: ../admin/mail_list.php:124
 msgid "Address"
 msgstr ""
 
-#: ../admin/mail_list.php:127
+#: ../admin/mail_list.php:124
 msgid "Last login time"
 msgstr ""
 
-#: ../admin/mail_list.php:127
+#: ../admin/mail_list.php:124
 msgid "Other recipients"
 msgstr ""
 
-#: ../admin/mail_list.php:127
+#: ../admin/mail_list.php:124
 msgid "Pop/Imap"
 msgstr ""
 
-#: ../admin/mail_list.php:138
+#: ../admin/mail_list.php:135
 msgid "Deleting..."
 msgstr ""
 
-#: ../admin/mail_list.php:143
+#: ../admin/mail_list.php:140
 msgid ""
 "This email will be deleted soon. You may still be able to undelete it by "
 "clicking here"
 msgstr ""
 
-#: ../admin/mail_list.php:143
+#: ../admin/mail_list.php:140
 msgid "Undelete"
 msgstr ""
 
-#: ../admin/mail_list.php:169 ../admin/main.php:38
+#: ../admin/mail_list.php:166 ../admin/main.php:38
 msgid "Never"
 msgstr ""
 
-#: ../admin/mail_list.php:180
+#: ../admin/mail_list.php:177
 msgid "Delete the checked email addresses"
 msgstr ""
 
-#: ../admin/mail_list.php:188
+#: ../admin/mail_list.php:185
 msgid "Mails configuration information"
 msgstr ""
 
-#: ../admin/mail_list.php:190
+#: ../admin/mail_list.php:187
 msgid ""
 "Here are some configuration information you will need to configure your mail "
 "application."
 msgstr ""
 
-#: ../admin/mail_list.php:197
+#: ../admin/mail_list.php:194
 msgid "Outgoing mail (SMTP)"
 msgstr ""
 
-#: ../admin/mail_list.php:198
+#: ../admin/mail_list.php:195
 msgid "Incoming mail"
 msgstr ""
 
-#: ../admin/mail_list.php:203 ../admin/mail_list.php:250
+#: ../admin/mail_list.php:200 ../admin/mail_list.php:247
 msgid "Which protocol shall you use?"
 msgstr ""
 
-#: ../admin/mail_list.php:206
+#: ../admin/mail_list.php:203
 msgid "Submission"
 msgstr ""
 
-#: ../admin/mail_list.php:209 ../admin/mail_list.php:222
-#: ../admin/mail_list.php:235 ../admin/mail_list.php:255
-#: ../admin/mail_list.php:266 ../admin/mail_list.php:277
-#: ../admin/mail_list.php:288
+#: ../admin/mail_list.php:206 ../admin/mail_list.php:219
+#: ../admin/mail_list.php:232 ../admin/mail_list.php:252
+#: ../admin/mail_list.php:263 ../admin/mail_list.php:274
+#: ../admin/mail_list.php:285
 #, fuzzy
 msgid "Server name: "
 msgstr "Datei"
 
-#: ../admin/mail_list.php:210 ../admin/mail_list.php:223
-#: ../admin/mail_list.php:236
+#: ../admin/mail_list.php:207 ../admin/mail_list.php:220
+#: ../admin/mail_list.php:233
 msgid ""
 "The mail address you want to access <i>(example : myuser@example.tld)</i>"
 msgstr ""
 
-#: ../admin/mail_list.php:210 ../admin/mail_list.php:223
-#: ../admin/mail_list.php:236
+#: ../admin/mail_list.php:207 ../admin/mail_list.php:220
+#: ../admin/mail_list.php:233
 msgid "Username: "
 msgstr ""
+
+#: ../admin/mail_list.php:208 ../admin/mail_list.php:221
+#: ../admin/mail_list.php:234 ../admin/mail_list.php:253
+#: ../admin/mail_list.php:264 ../admin/mail_list.php:275
+#: ../admin/mail_list.php:286
+msgid "Port: "
+msgstr ""
+
+#: ../admin/mail_list.php:209 ../admin/mail_list.php:222
+#: ../admin/mail_list.php:235 ../admin/mail_list.php:254
+#: ../admin/mail_list.php:265 ../admin/mail_list.php:276
+#: ../admin/mail_list.php:287
+msgid "Authentication: "
+msgstr ""
+
+#: ../admin/mail_list.php:210 ../admin/mail_list.php:223
+#: ../admin/mail_list.php:236 ../admin/mail_list.php:255
+#: ../admin/mail_list.php:266 ../admin/mail_list.php:277
+#: ../admin/mail_list.php:288
+msgid "Authentication method: "
+msgstr ""
+
+#: ../admin/mail_list.php:210 ../admin/mail_list.php:255
+#: ../admin/mail_list.php:266 ../admin/mail_list.php:277
+#: ../admin/mail_list.php:288
+#, fuzzy
+msgid "Normal password"
+msgstr "Passwört"
 
 #: ../admin/mail_list.php:211 ../admin/mail_list.php:224
 #: ../admin/mail_list.php:237 ../admin/mail_list.php:256
 #: ../admin/mail_list.php:267 ../admin/mail_list.php:278
 #: ../admin/mail_list.php:289
-msgid "Port: "
-msgstr ""
-
-#: ../admin/mail_list.php:212 ../admin/mail_list.php:225
-#: ../admin/mail_list.php:238 ../admin/mail_list.php:257
-#: ../admin/mail_list.php:268 ../admin/mail_list.php:279
-#: ../admin/mail_list.php:290
-msgid "Authentication: "
-msgstr ""
-
-#: ../admin/mail_list.php:213 ../admin/mail_list.php:226
-#: ../admin/mail_list.php:239 ../admin/mail_list.php:258
-#: ../admin/mail_list.php:269 ../admin/mail_list.php:280
-#: ../admin/mail_list.php:291
-msgid "Authentication method: "
-msgstr ""
-
-#: ../admin/mail_list.php:213 ../admin/mail_list.php:258
-#: ../admin/mail_list.php:269 ../admin/mail_list.php:280
-#: ../admin/mail_list.php:291
-#, fuzzy
-msgid "Normal password"
-msgstr "Passwört"
-
-#: ../admin/mail_list.php:214 ../admin/mail_list.php:227
-#: ../admin/mail_list.php:240 ../admin/mail_list.php:259
-#: ../admin/mail_list.php:270 ../admin/mail_list.php:281
-#: ../admin/mail_list.php:292
 msgid "Connection security:"
 msgstr ""
 
-#: ../admin/mail_list.php:219
+#: ../admin/mail_list.php:216
 msgid "SMTP"
 msgstr ""
 
-#: ../admin/mail_list.php:226 ../admin/mail_list.php:239
+#: ../admin/mail_list.php:223 ../admin/mail_list.php:236
 #, fuzzy
 msgid "Normal Password"
 msgstr "Passwört"
 
-#: ../admin/mail_list.php:232
+#: ../admin/mail_list.php:229
 msgid "SMTPS"
 msgstr ""
 
-#: ../admin/mail_list.php:252
+#: ../admin/mail_list.php:249
 msgid "IMAP"
 msgstr ""
 
-#: ../admin/mail_list.php:263
+#: ../admin/mail_list.php:260
 msgid "IMAPS"
 msgstr ""
 
-#: ../admin/mail_list.php:274
+#: ../admin/mail_list.php:271
 msgid "POP3"
 msgstr ""
 
-#: ../admin/mail_list.php:285
+#: ../admin/mail_list.php:282
 msgid "POP3S"
 msgstr ""
 
@@ -5204,7 +5204,7 @@ msgid "Email autoconfiguration"
 msgstr ""
 
 #: ../class/m_dom.php:2129
-msgid "default php (currently version %)"
+msgid "default php (currently %)"
 msgstr ""
 
 #: ../class/m_err.php:71 ../class/m_err.php:103
