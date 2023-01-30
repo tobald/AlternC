@@ -36,7 +36,7 @@ getFields($fields);
 
 // here we get a dynamic-named value
 $dynamicvar="t_$type";
-$httpsvar="https_$type";
+$httpsvar="https_option";
 $fields = array (
   "$dynamicvar"   => array ("post", "string", ""),
   "$httpsvar"   => array ("post", "string", ""),
