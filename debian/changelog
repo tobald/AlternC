@@ -1,3 +1,18 @@
+alternc (3.5.0+dp9) buster; urgency=medium
+
+  [ Christophe Siraut ]
+  * dom_subedit: display https drop-down list for vhost types (regression fix)
+  * dom_subedit: shorten https option description
+  * dom_subedit: mask vhost_type label
+  * m_dom: shorten php version label
+  * update translations
+  * m_bind: remove duplicated hook_updatedomains_dns_pre()
+
+  [ Quenenni ]
+  * dom_add: dns variable type is integer
+
+ -- Christophe Siraut <d@tobald.eu.org>  Mon, 30 Jan 2023 15:40:26 +0100
+
 alternc (3.5.0+dp8) buster; urgency=medium
 
   [ Christophe Siraut ]
