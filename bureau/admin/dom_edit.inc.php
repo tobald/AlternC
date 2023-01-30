@@ -93,9 +93,9 @@ $dom->unlock();
           </td>
           <td>
           <select class="inl" name="https_option" id="https_option">
-              <option value="https"<?php selected((strtoupper($type)==strtoupper($dt['name']) && $sd["https"]=="https") || false); ?>><?php __("HTTPS Only (redirect HTTP to HTTPS"); ?></option>
-              <option value="http"<?php selected((strtoupper($type)==strtoupper($dt['name']) && $sd["https"]=="http") || false); ?>><?php __("HTTP Only (redirect HTTPS to HTTP"); ?></option>
-              <option value="both"<?php selected((strtoupper($type)==strtoupper($dt['name']) && $sd["https"]=="both") || false); ?>><?php __("Both HTTP and HTTPS hosted at the same place"); ?></option>
+              <option value="https"<?php selected((strtoupper($type)==strtoupper($dt['name']) && $sd["https"]=="https") || false); ?>><?php __("HTTPS (with HTTP redirect)"); ?></option>
+              <option value="http"<?php selected((strtoupper($type)==strtoupper($dt['name']) && $sd["https"]=="http") || false); ?>><?php __("HTTP (with HTTPS redirect)"); ?></option>
+              <option value="both"<?php selected((strtoupper($type)==strtoupper($dt['name']) && $sd["https"]=="both") || false); ?>><?php __("Both HTTP and HTTPS"); ?></option>
           </select>
           </td>
         </tr>
@@ -153,9 +153,9 @@ $dom->unlock();
 <?php if ($dt['has_https_option']) { ?>
 
      <select class="inl" name="https_option" id="https_option">
-            <option value="https"<?php selected((strtoupper($type)==strtoupper($dt['name']) && $sd["https"]=="https") || false); ?>><?php __("HTTPS Only (redirect HTTP to HTTPS)"); ?></option>
-            <option value="http"<?php selected((strtoupper($type)==strtoupper($dt['name']) && $sd["https"]=="http") || false); ?>><?php __("HTTP Only (redirect HTTPS to HTTP)"); ?></option>
-            <option value="both"<?php selected((strtoupper($type)==strtoupper($dt['name']) && $sd["https"]=="both") || false); ?>><?php __("Both HTTP and HTTPS hosted at the same place"); ?></option>
+            <option value="https"<?php selected((strtoupper($type)==strtoupper($dt['name']) && $sd["https"]=="https") || false); ?>><?php __("HTTPS (with HTTP redirect)"); ?></option>
+            <option value="http"<?php selected((strtoupper($type)==strtoupper($dt['name']) && $sd["https"]=="http") || false); ?>><?php __("HTTP (with HTTPS redirect)"); ?></option>
+            <option value="both"<?php selected((strtoupper($type)==strtoupper($dt['name']) && $sd["https"]=="both") || false); ?>><?php __("Both HTTP and HTTPS"); ?></option>
             </select>
 <?php  } ?>
         </td>
