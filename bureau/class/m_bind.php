@@ -25,8 +25,8 @@
  */
 class m_bind {
 
-    var $shouldreload;
-    var $shouldreconfig;
+    var $shouldreload = false;
+    var $shouldreconfig = false;
     
     var $ZONE_TEMPLATE ="/etc/alternc/templates/bind/templates/zone.template";
     var $NAMED_TEMPLATE ="/etc/alternc/templates/bind/templates/named.template";
@@ -34,16 +34,6 @@ class m_bind {
     var $RNDC ="/usr/sbin/rndc";
 
     var $zone_file_directory = '/var/lib/alternc/bind/zones';
-
-    // ------------------------------------------------------------
-    /** Hook launched before any action by updatedomains 
-     * initialize the reload/reconfig flags used by POST
-     * @NOTE launched as ROOT 
-     */
-    function hook_updatedomains_dns_pre() {
-        $this->shouldreload=false;
-        $this->shouldreconfig=false;
-    }
 
 
     // ------------------------------------------------------------
