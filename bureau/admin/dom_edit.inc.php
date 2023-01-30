@@ -84,7 +84,7 @@ $dom->unlock();
           <td>
           <input type="text" class="int" name="t_vhost" id="t_vhost" value="<?= $input_value ?>" size="28" onKeyPress="getElementById('r_vhost').checked=true;" />
           <?php display_browser($sd['dest'], "t_vhost" ); ?> &nbsp;
-          <label for="vhost_type"><?php __('Type'); ?></label>
+          <!-- <label for="vhost_type"><?php __('Type'); ?></label> -->
           <select class="inl" name="vhost_type" id="vhost_type">
             <?php foreach ($vhost_types as $vt) { ?>
             <option value="<?= $vt['name']; ?>"<?php selected($vt['selected'] || false); ?>><?= $vt['display_name']; ?></option>
