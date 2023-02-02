@@ -71,9 +71,11 @@ $dom->unlock();
    if (is_array($sd) && in_array($sd['type'], array_map(function($t) {return $t['name'];}, $vhost_types))) {
        $checked = true;
        $input_value = $sd['dest'];
+       $https_option = $sd['https'];
    } else {
        $checked = '';
        $input_value = '';
+       $https_option = '';
    }
    if (!empty($vhost_types)) {?>
         <tr>
@@ -93,9 +95,9 @@ $dom->unlock();
           </td>
           <td>
           <select class="inl" name="https_option" id="https_option">
-              <option value="https"<?php selected((strtoupper($type)==strtoupper($dt['name']) && $sd["https"]=="https") || false); ?>><?php __("HTTPS (with HTTP redirect)"); ?></option>
-              <option value="http"<?php selected((strtoupper($type)==strtoupper($dt['name']) && $sd["https"]=="http") || false); ?>><?php __("HTTP (with HTTPS redirect)"); ?></option>
-              <option value="both"<?php selected((strtoupper($type)==strtoupper($dt['name']) && $sd["https"]=="both") || false); ?>><?php __("Both HTTP and HTTPS"); ?></option>
+              <option value="https"<?php selected($https_option=="https"); ?>><?php __("HTTPS (with HTTP redirect)"); ?></option>
+              <option value="http"<?php selected($https_option=="http"); ?>><?php __("HTTP (with HTTPS redirect)"); ?></option>
+              <option value="both"<?php selected($https_option="both"); ?>><?php __("Both HTTP and HTTPS"); ?></option>
           </select>
           </td>
         </tr>
