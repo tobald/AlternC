@@ -103,7 +103,10 @@ class m_bind {
 
         // add the manually entered info:
         $zone .= $more;
-        file_put_contents($this->zone_file_directory."/".$domain,$zone);
+        $zonefile = $this->zone_file_directory."/".$domain;
+        file_put_contents($zonefile, $zone);
+        chown($zonefile, 'bind');
+        chgrp($zonefile, 'bind');
 
         // add the line into bind9 conf:
         if (add_line_to_file(
