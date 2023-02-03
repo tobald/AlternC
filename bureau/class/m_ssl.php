@@ -406,7 +406,7 @@ INSTR(CONCAT(sd.sub,IF(sd.sub!='','.',''),sd.domaine),'.')+1))=?
      * (the 2 last will be the default FQDN and the snakeoil if necessary)
      * keys: id, provider, crt, chain, key, validstart, validend
      */
-    function get_valid_certs($fqdn, $provider="") {
+    function get_valid_certs($fqdn, $provider="", $matching_only=false) {
         global $db, $msg, $cuid;
         $this->expire_certificates();
 
@@ -440,6 +440,7 @@ INSTR(CONCAT(sd.sub,IF(sd.sub!='','.',''),sd.domaine),'.')+1))=?
                     $ugly[]=$db->Record;
                 }
             }
+
             // search for the default one, the one used by the panel
             if (!count($bad)) {
                 $found=false;
@@ -458,6 +459,9 @@ INSTR(CONCAT(sd.sub,IF(sd.sub!='','.',''),sd.domaine),'.')+1))=?
                     $bad=$db->Record;
                 }
             }
+        }
+        if ($matching_only) {
+            return $good;
         }
         // add the one with the bad provider
         if (count($ugly)) {
@@ -670,6 +674,14 @@ SELECT ?,?,?, FROM_UNIXTIME(?), FROM_UNIXTIME(?), ?, ?, sslcsr FROM certificate 
             return; // nothing to do : this domain type does not involve Vhosts
         }
         $subdom["fqdn"]=$subdom["sub"].(($subdom["sub"])?".":"").$subdom["domaine"];
+
+        $cert_exists = !empty($this->get_valid_certs($subdom["fqdn"], $subdom["provider"], true));
+        $generate_certbot = "/usr/lib/alternc/generate_certbot.php";
+        if (file_exists($generate_certbot) && !$cert_exists) {
+            $msg->log("ssl", "trying to get letsencrypt certificate");
+            exec(sprintf("%s --domains %s", $generate_certbot, $subdom["fqdn"]), $output);
+            $msg->log("ssl", "\n".join($output));
+        }
 
         list($cert) = $this->get_valid_certs($subdom["fqdn"], $subdom["provider"]);
         $this->write_cert_file($cert);        
