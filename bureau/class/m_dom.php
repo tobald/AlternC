@@ -2127,4 +2127,17 @@ class m_dom {
     }
 
 
+    /**
+     * @return string Nom du type de domaine
+     */
+    function default_vhost_type() {
+        $db->query("select domain_type from default_subdomains where sub='www' and concerned='MAIN' and enabled=1;");
+        $record = $db->next_record();
+        if ($record) {
+            return $db->f('domain_type');
+        } else {
+            return '';
+        }
+    }
+
 } /* Class m_domains */

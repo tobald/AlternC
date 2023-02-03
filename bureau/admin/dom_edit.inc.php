@@ -72,10 +72,12 @@ $dom->unlock();
        $checked = true;
        $input_value = $sd['dest'];
        $https_option = $sd['https'];
+       $vhost_type_option = $sd['type'];
    } else {
        $checked = '';
        $input_value = '';
        $https_option = '';
+       $vhost_type_option = strtolower($dom->default_vhost_type());
    }
    if (!empty($vhost_types)) {?>
         <tr>
@@ -89,7 +91,7 @@ $dom->unlock();
           <!-- <label for="vhost_type"><?php __('Type'); ?></label> -->
           <select class="inl" name="vhost_type" id="vhost_type">
             <?php foreach ($vhost_types as $vt) { ?>
-            <option value="<?= $vt['name']; ?>"<?php selected($vt['selected'] || false); ?>><?= $vt['display_name']; ?></option>
+            <option value="<?= $vt['name']; ?>" <?php selected($vt['name']==$vhost_type_option); ?>><?= $vt['display_name']; ?></option>
             <?php } ?>
           </select>
           </td>
