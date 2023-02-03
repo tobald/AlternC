@@ -1,3 +1,15 @@
+alternc (3.5.0+dp10) buster; urgency=medium
+
+  * m_bind: change new zone file ownership to bind
+  * dom_edit: display current https_option (regression fix)
+  * dom_edit: print phpversion à la kenny
+  * Revert "m_dom: order domain_types() starting with default_vhost_type"
+  * Revert "db/variable: add default_vhost_template"
+  * dom_edit: use default vhost value from default_subdomains table when available
+  * m_ssl: when appropriate try to obtain a letsencrypt certificate immediately
+
+ -- Christophe Siraut <d@tobald.eu.org>  Fri, 03 Feb 2023 10:41:44 +0100
+
 alternc (3.5.0+dp9) buster; urgency=medium
 
   [ Christophe Siraut ]
