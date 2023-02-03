@@ -2102,7 +2102,7 @@ class m_dom {
         global $mem;
 
         $result = array();
-        $php_version = phpversion();
+        $php_version = sprintf('php %s', implode(".", array_slice(explode(".", phpversion()), 0, 2)));
         $is_superuser = $mem->is_superuser();
         $domain_types = $this->domains_type_lst();
 
@@ -2126,7 +2126,7 @@ class m_dom {
                 $entry['selected'] = true;
             $entry['display_name'] = str_replace(['-', '_'], [' ', ''] , $entry['name']);
             if (strtolower($dt['name']) == 'vhost')
-                $entry['display_name'] = str_replace('%', $php_version, _('default php (currently %)'));
+                $entry['display_name'] = $php_version;
             else if (preg_match("/^php(\d+)-fpm$/", $entry['name'], $match))
                 $entry['display_name'] = 'php '.(implode('.', str_split($match[1]))).' fpm';
 
