@@ -219,8 +219,8 @@ if ((variable_get('sql_max_username_length', NULL)==NULL)||(variable_get('sql_ma
     $result = $db->query("SELECT (SELECT CHARACTER_MAXIMUM_LENGTH length FROM information_schema.columns  WHERE TABLE_SCHEMA='mysql' and TABLE_NAME='user' and COLUMN_NAME='User') username, (SELECT CHARACTER_MAXIMUM_LENGTH length FROM information_schema.columns  WHERE TABLE_SCHEMA='mysql' and TABLE_NAME='db' and COLUMN_NAME='Db') `database`");
     if ($db->next_record($result)) {
         $variable = $db->Record;
-        $variable['username']=min(128, $variable['username']);
-        $variable['database']=min($variable['database'], $variable['username']);
+        $variable['username']=min(128, (int)$variable['username']);
+        $variable['database']=min((int)$variable['database'], $variable['username']);
         variable_set('sql_max_username_length', $variable['username'], 'Maximum length allowed for SQL usernames by your SQL server (do not modify unless you know what you do)');
         variable_set('sql_max_database_length', $variable['database'], 'Maximum length allowed for SQL database names by your SQL server (do not modify unless you know what you do)');
     }
