@@ -2131,6 +2131,7 @@ class m_dom {
      * @return string Nom du type de domaine
      */
     function default_vhost_type() {
+        global $db;
         $db->query("select domain_type from default_subdomains where sub='www' and concerned='MAIN' and enabled=1;");
         $record = $db->next_record();
         if ($record) {
