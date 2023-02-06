@@ -269,7 +269,8 @@ function checkfqdn($fqdn) {
         $ret = 4;
     }
     reset($members);
-    while (list ($key, $val) = each($members)) {
+    foreach ($members as $key => $val) {
+
         if (strlen($val) > 63) {
             return 2;
         }
