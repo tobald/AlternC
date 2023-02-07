@@ -99,7 +99,7 @@ $dom->unlock();
           <select class="inl" name="https_option" id="https_option">
               <option value="https"<?php selected($https_option=="https"); ?>><?php __("HTTPS (with HTTP redirect)"); ?></option>
               <option value="http"<?php selected($https_option=="http"); ?>><?php __("HTTP (with HTTPS redirect)"); ?></option>
-              <option value="both"<?php selected($https_option="both"); ?>><?php __("Both HTTP and HTTPS"); ?></option>
+              <option value="both"<?php selected($https_option=="both"); ?>><?php __("Both HTTP and HTTPS"); ?></option>
           </select>
           </td>
         </tr>
