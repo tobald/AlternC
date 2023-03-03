@@ -39,9 +39,9 @@ if (! empty($sub)) {
    $sd=$dom->get_sub_domain_all($domain,$sub,$type,$value);
 }
 */
-$sd=$dom->get_sub_domain_all($sub_domain_id);
 
-if (is_array($sd)) {
+if ($sub_domain_id) {
+    $sd=$dom->get_sub_domain_all($sub_domain_id);
     $type=$sd['type'];
     $sub=$sd['name'];
 }
