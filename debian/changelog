@@ -1,3 +1,20 @@
+alternc (3.5.0+dp11) buster; urgency=medium
+
+  * dom_edit: remove obsolete code
+  * m_hooks: method_exists(), prevent Argument #1 ($object_or_class) must be of type object|string, null given
+  * m_dom: default_vhost_type() refers to global db
+  * functions: replace removed each() function (php 8 compat)
+  * config.php: cast length as integer (php 8 compat)
+  * dom_edit: really use current https_option
+  * sql: add zone delegations
+  * api/vhost: precise regex in order to prevent collusion with mailman3 urls
+  * sql: update dbusers/name column length
+  * m_dom: update web_action when domain is enabled/disabled (issued by kenny)
+  * dom_edit: prevent looking for void sub_domain
+  * dom_edit: when creating a subdomain select locally hosted type by default
+
+ -- Christophe Siraut <d@tobald.eu.org>  Fri, 03 Mar 2023 10:48:45 +0100
+
 alternc (3.5.0+dp10) buster; urgency=medium
 
   * m_bind: change new zone file ownership to bind
