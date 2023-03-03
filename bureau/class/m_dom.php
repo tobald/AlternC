@@ -582,7 +582,7 @@ class m_dom {
             }
         }
 
-        $db->query("update sub_domaines set enable= ? where id = ? ;", array($status, intval($sub_id)));
+        $db->query("update sub_domaines set enable=?, web_action='UPDATE' where id = ? ;", array($status, intval($sub_id)));
         $this->set_dns_action($jh['domain'], 'UPDATE');
         $this->set_web_action($sub_id, 'UPDATE');
 
