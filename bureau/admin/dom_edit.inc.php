@@ -74,7 +74,8 @@ $dom->unlock();
        $https_option = $sd['https'];
        $vhost_type_option = $sd['type'];
    } else {
-       $checked = '';
+       if ($sd) $checked = '';
+       else $checked = True;
        $input_value = '';
        $https_option = '';
        $vhost_type_option = strtolower($dom->default_vhost_type());
