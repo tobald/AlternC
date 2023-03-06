@@ -98,7 +98,6 @@ class m_admin {
             )
         );
 
-        if ($cuid == 2000) { // only ADMIN, not available to subadmins
             $obj['links'][] = array(
                 'txt' => _("Admin Control Panel"),
                 'url' => 'adm_panel.php',
@@ -129,7 +128,6 @@ class m_admin {
                     'onclick' => 'return confirm("' . addslashes(_("Server configuration changes are applied every 5 minutes. Do you want to do it right now?")) . '");',
                 );
             } // L_INOTIFY_UPDATE_DOMAIN
-        } // cuid == 2000
 
 
         return $obj;
