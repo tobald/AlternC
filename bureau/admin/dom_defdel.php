@@ -27,7 +27,7 @@ require_once("../class/config.php");
 include_once("head.php");
 
 $fields = array (
-        "id"     => array ("post", "integer", ""),
+        "id"     => array ("get", "integer", ""),
         );
 getFields($fields);
 
