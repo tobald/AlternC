@@ -118,7 +118,7 @@ class m_quota {
     function qlist() {
         $qlist = array();
         reset($this->disk);
-        while (list($key, $val) = each($this->disk)) {
+        foreach($this->disk as $key => $val) {
             $qlist[$key] = _("quota_" . $key); // those are specific disks quotas.
         }
 
@@ -196,7 +196,7 @@ class m_quota {
                 // Look if there are some cached value
                 $disk_cached = $mem->session_tempo_params_get('quota_cache_disk');
 
-                while (list($key, $val) = each($this->disk)) {
+                foreach($this->disk as $key => $val) {
                     $a = array();
                     if (
                         isset($disk_cached[$val]) && !empty($disk_cached[$val]) && $disk_cached[$val]['uid'] == $cuid && $disk_cached[$val]['timestamp'] > ( time() - (90) ) // Cache, en seconde
@@ -343,7 +343,7 @@ class m_quota {
             $msg->raise("ERROR", "quota", _("Type can only contains characters a-z and 0-9"));
             return false;
         }
-        while (list($key, $val) = each($qlist)) {
+        foreach($qlist as $key => $val) {
             if (!$db->query("INSERT IGNORE INTO defquotas (quota,type) VALUES(?, ?);", array($key, $type)) || $db->affected_rows() == 0) {
                 return false;
             }
