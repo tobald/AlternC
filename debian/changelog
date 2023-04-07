@@ -1,3 +1,16 @@
+alternc (3.5.0+dp12) buster; urgency=medium
+
+  [ Christophe Siraut ]
+  * m_admin: display complete menu to all admins
+  * lang_env: remplace each (php 8 compat)
+  * m_quota: remplace each (php 8 compat)
+  * dom_defdel: request method is get
+
+  [ Quenenni ]
+  * dom_subdoedit: parametrize http/https redirection
+
+ -- Christophe Siraut <d@tobald.eu.org>  Fri, 07 Apr 2023 12:11:12 +0200
+
 alternc (3.5.0+dp11) buster; urgency=medium
 
   * dom_edit: remove obsolete code
